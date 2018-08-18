@@ -1,0 +1,36 @@
+<label>Server Name</label>
+<!--[Example] One way Binding-->
+<!--<input-->
+  <!--type="text"-->
+  <!--class="form-control"-->
+  <!--(input)="onUpdateServerName($event)">-->
+
+<!--[Example] Two way Binding-->
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)]="serverName" >
+<!--<p>{{ serverName }}</p>-->
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()">Add New Server</button>
+<!--<p [innerText]="allowNewServer" ></p>-->
+<!--<p>{{allowNewServer}}</p>-->
+<p>{{ serverCreationStatus }}</p>
+<app-server></app-server>
+<app-server></app-server>
+<label>Username</label>
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)]="username">
+  <!--(input)="onUsernameInput()">-->
+<button
+  class="btn btn-primary"
+  [disabled]="username === ''"
+  (click)="username = ''" >
+  <!--(click) = "resetUsername()" >-->
+  Reset Username</button>
+<!--[disabled]="!allowUserReset"-->
+<p>{{ username }}</p>

@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  // styleUrls: ['./app.component.css']
+  styles: [`
+    h3 {
+      color: #009926;
+    }
+  `]
 })
 export class AppComponent {
-  title = 'client';
-  data = {};
-  constructor(private http: HttpClient){
-    http.get('resource').subscribe(data => this.data = data);
-  }
+  title = 'Angular world!';
+  name = '';
 }
