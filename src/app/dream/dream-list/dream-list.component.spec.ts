@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DirectiveComponent } from './directive.component';
+import { DreamListComponent } from './dream-list.component';
 
-describe('DirectiveComponent', () => {
-  let component: DirectiveComponent;
-  let fixture: ComponentFixture<DirectiveComponent>;
+describe('DreamListComponent', () => {
+  let component: DreamListComponent;
+  let fixture: ComponentFixture<DreamListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DirectiveComponent ]
+      declarations: [ DreamListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DirectiveComponent);
+    fixture = TestBed.createComponent(DreamListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

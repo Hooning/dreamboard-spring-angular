@@ -6,7 +6,7 @@
     <groupId>com.practice</groupId>
     <artifactId>maven-angular-spring</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>maven-angular-spring</name>
     <description>Maven angular project for Spring Boot</description>
@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <tomcat.version>8.5.32</tomcat.version>
     </properties>
 
     <dependencies>
@@ -37,7 +38,11 @@
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-core</artifactId>
         </dependency>
-
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+          <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -51,6 +56,7 @@
     </dependencies>
 
     <build>
+        <finalName>maven-angular-spring</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
