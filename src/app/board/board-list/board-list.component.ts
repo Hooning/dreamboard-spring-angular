@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import { Board } from '../../shared/board.model';
 
 @Component({
@@ -17,4 +17,8 @@ export class BoardListComponent implements OnInit {
   ngOnInit() {
   }
 
+  onBoardCreated(newBoardInfo: Board) {
+    //console.log(newBoardInfo);
+    this.boards.push(newBoardInfo);
+  }
 }
