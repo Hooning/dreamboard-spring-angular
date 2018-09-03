@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-dream-item',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dream-item.component.css']
 })
 export class DreamItemComponent implements OnInit {
+  @Input() dreamInfo;
+  @Output() showItemDetail = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onItemClick() {
+    this.showItemDetail.emit();
   }
 
 }

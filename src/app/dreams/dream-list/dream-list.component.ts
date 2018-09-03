@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Dream} from "../dream.model";
 
 @Component({
@@ -7,6 +7,8 @@ import {Dream} from "../dream.model";
   styleUrls: ['./dream-list.component.css']
 })
 export class DreamListComponent implements OnInit {
+  @Output() dreamWasSelected = new EventEmitter<Dream>();
+
   dreams: Dream[] = [
     //Dummy data
     new Dream('Family Europe Travel', 'We will go more than 5 countries..', 'https://www.eturbonews.com/wp-content/uploads/2017/05/EUROPEtravel-696x492.jpg'),
@@ -18,6 +20,10 @@ export class DreamListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDreamSelected(dream: Dream) {
+    this.dreamWasSelected.emit(dream);
   }
 
 }

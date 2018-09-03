@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Dream} from "../dream.model";
 
 @Component({
   selector: 'app-dream-detail',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dream-detail.component.css']
 })
 export class DreamDetailComponent implements OnInit {
+  @Input() dream: Dream;
 
   constructor() { }
 
