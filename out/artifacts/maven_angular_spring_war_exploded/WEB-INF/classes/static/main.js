@@ -23,6 +23,17 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/app.component.css":
+/*!***********************************!*\
+  !*** ./src/app/app.component.css ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
 /***/ "./src/app/app.component.html":
 /*!************************************!*\
   !*** ./src/app/app.component.html ***!
@@ -30,7 +41,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-xs-12\">\n      <h3>I'm in the AppComponent!</h3>\n      <hr>\n      <app-servers></app-servers>\n      <!--<div app-servers></div>-->\n      <!--<div class=app-servers></div>-->\n      <!--<app-warningAlert></app-warningAlert>-->\n      <!--<div app-success-alert></div>-->\n      <app-directive></app-directive>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<app-header (featureSelected)=\"onNavigate($event)\"></app-header>\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <app-board-list\n        *ngIf=\"displayBoardList\" >\n      </app-board-list>\n      <app-dreams\n        *ngIf=\"displayDream\" >\n      </app-dreams>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -51,19 +62,33 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'Angular world!';
-        this.name = '';
+        this.displayBoardList = false;
+        this.displayDream = false;
     }
+    AppComponent.prototype.onNavigate = function (menu) {
+        console.log("[" + menu + "] Menu clicked!");
+        if (menu === 'boardList') {
+            this.displayBoardList = true;
+            this.displayDream = false;
+        }
+        else {
+            this.displayDream = true;
+            this.displayBoardList = false;
+        }
+    };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
-            // styleUrls: ['./app.component.css']
-            styles: ["\n    h3 {\n      color: #009926;\n    }\n  "]
-        })
+            styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
     ], AppComponent);
     return AppComponent;
 }());
@@ -85,18 +110,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _server_server_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./server/server.component */ "./src/app/server/server.component.ts");
-/* harmony import */ var _servers_servers_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./servers/servers.component */ "./src/app/servers/servers.component.ts");
-/* harmony import */ var _warning_alert_warning_alert_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./warning-alert/warning-alert.component */ "./src/app/warning-alert/warning-alert.component.ts");
-/* harmony import */ var _success_alert_success_alert_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./success-alert/success-alert.component */ "./src/app/success-alert/success-alert.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _directive_directive_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./directive/directive.component */ "./src/app/directive/directive.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./header/header.component */ "./src/app/header/header.component.ts");
+/* harmony import */ var _board_board_list_board_list_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./board/board-list/board-list.component */ "./src/app/board/board-list/board-list.component.ts");
+/* harmony import */ var _board_board_list_board_edit_board_edit_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./board/board-list/board-edit/board-edit.component */ "./src/app/board/board-list/board-edit/board-edit.component.ts");
+/* harmony import */ var _dreams_dream_list_dream_list_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dreams/dream-list/dream-list.component */ "./src/app/dreams/dream-list/dream-list.component.ts");
+/* harmony import */ var _dreams_dream_list_dream_item_dream_item_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dreams/dream-list/dream-item/dream-item.component */ "./src/app/dreams/dream-list/dream-item/dream-item.component.ts");
+/* harmony import */ var _dreams_dream_detail_dream_detail_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dreams/dream-detail/dream-detail.component */ "./src/app/dreams/dream-detail/dream-detail.component.ts");
+/* harmony import */ var _dreams_dreams_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dreams/dreams.component */ "./src/app/dreams/dreams.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -113,15 +142,17 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
-                _server_server_component__WEBPACK_IMPORTED_MODULE_3__["ServerComponent"],
-                _servers_servers_component__WEBPACK_IMPORTED_MODULE_4__["ServersComponent"],
-                _warning_alert_warning_alert_component__WEBPACK_IMPORTED_MODULE_5__["WarningAlertComponent"],
-                _success_alert_success_alert_component__WEBPACK_IMPORTED_MODULE_6__["SuccessAlertComponent"],
-                _directive_directive_component__WEBPACK_IMPORTED_MODULE_8__["DirectiveComponent"]
+                _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"],
+                _board_board_list_board_list_component__WEBPACK_IMPORTED_MODULE_5__["BoardListComponent"],
+                _board_board_list_board_edit_board_edit_component__WEBPACK_IMPORTED_MODULE_6__["BoardEditComponent"],
+                _dreams_dream_list_dream_list_component__WEBPACK_IMPORTED_MODULE_7__["DreamListComponent"],
+                _dreams_dream_list_dream_item_dream_item_component__WEBPACK_IMPORTED_MODULE_8__["DreamItemComponent"],
+                _dreams_dream_detail_dream_detail_component__WEBPACK_IMPORTED_MODULE_9__["DreamDetailComponent"],
+                _dreams_dreams_component__WEBPACK_IMPORTED_MODULE_10__["DreamsComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"]
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
@@ -134,28 +165,29 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/directive/directive.component.html":
-/*!****************************************************!*\
-  !*** ./src/app/directive/directive.component.html ***!
-  \****************************************************/
+/***/ "./src/app/board/board-list/board-edit/board-edit.component.html":
+/*!***********************************************************************!*\
+  !*** ./src/app/board/board-list/board-edit/board-edit.component.html ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<hr>\n<button class=\"btn btn-info\"\n        (click)=\"addParagraph()\">\n  Display Details\n</button>\n<br>\n<p *ngIf=\"paragraphShow\">\n  Secret password = Hallo\n</p>\n\n<div *ngFor=\"let logItem of clickedLogs; let i = index\"\n   [ngStyle]=\"{backgroundColor: i >= 4 ? 'blue' : 'none'}\"\n   [ngClass]=\"{textColor: i >= 4}\">\n      {{logItem}}\n</div>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <form>\n      <div class=\"row\">\n        <div class=\"col-sm-3 form-group\">\n          <label for=\"name\">Name</label>\n          <input\n            type=\"text\"\n            id=\"name\"\n            class=\"form-control\"\n            #nameInput\n            >\n        </div>\n        <div class=\"col-sm-2 form-group\">\n          <label for=\"category\">Category</label>\n          <input\n            type=\"text\"\n            id=\"category\"\n            class=\"form-control\"\n            #categoryInput\n            >\n        </div>\n        <div class=\"col-sm-7 form-group\">\n          <label for=\"description\">Description</label>\n          <input\n            type=\"text\"\n            id=\"description\"\n            class=\"form-control\"\n            #descriptionInput\n            >\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-xs-12\">\n          <div class=\"btn-toolbar\">\n            <button\n              class=\"btn btn-success\"\n              type=\"submit\"\n              (click)=\"onAddBoard()\"\n              >\n              Add\n            </button>\n            <button class=\"btn btn-danger\" type=\"button\">Delete</button>\n            <button class=\"btn btn-primary\" type=\"button\">Clear</button>\n          </div>\n        </div>\n      </div>\n    </form>\n  </div>\n</div>\n"
 
 /***/ }),
 
-/***/ "./src/app/directive/directive.component.ts":
-/*!**************************************************!*\
-  !*** ./src/app/directive/directive.component.ts ***!
-  \**************************************************/
-/*! exports provided: DirectiveComponent */
+/***/ "./src/app/board/board-list/board-edit/board-edit.component.ts":
+/*!*********************************************************************!*\
+  !*** ./src/app/board/board-list/board-edit/board-edit.component.ts ***!
+  \*********************************************************************/
+/*! exports provided: BoardEditComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DirectiveComponent", function() { return DirectiveComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoardEditComponent", function() { return BoardEditComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _shared_board_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../shared/board.model */ "./src/app/shared/board.model.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -166,99 +198,58 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var DirectiveComponent = /** @class */ (function () {
-    function DirectiveComponent() {
-        this.paragraphShow = false;
-        this.clickedLogs = [];
+
+var BoardEditComponent = /** @class */ (function () {
+    function BoardEditComponent() {
+        this.boardCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
-    DirectiveComponent.prototype.ngOnInit = function () {
+    BoardEditComponent.prototype.onAddBoard = function () {
+        // console.log('onAddBoard() called!');
+        // this.board = new Board(
+        //   this.nameInputRef.nativeElement.value,
+        //   this.categoryInputRef.nativeElement.value,
+        //   this.descriptionInputRef.nativeElement.value
+        //   )
+        var brdName = this.nameInputRef.nativeElement.value;
+        var brdCategory = this.categoryInputRef.nativeElement.value;
+        var brdDesc = this.descriptionInputRef.nativeElement.value;
+        var newBoard = new _shared_board_model__WEBPACK_IMPORTED_MODULE_1__["Board"](brdName, brdCategory, brdDesc);
+        this.boardCreated.emit(newBoard);
     };
-    DirectiveComponent.prototype.addParagraph = function () {
-        this.paragraphShow = !this.paragraphShow;
-        this.clickedLogs.push('[' + new Date() + '] index: [' + (this.clickedLogs.length + 1) + '] Clicked!');
-        //this.clickedLogs.push(this.clickedLogs.length + 1);
-    };
-    DirectiveComponent.prototype.getBgColor = function () {
-        return this.clickedLogs.length > 4 ? 'blue' : 'none';
-    };
-    DirectiveComponent = __decorate([
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('nameInput'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], BoardEditComponent.prototype, "nameInputRef", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('categoryInput'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], BoardEditComponent.prototype, "categoryInputRef", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('descriptionInput'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], BoardEditComponent.prototype, "descriptionInputRef", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", Object)
+    ], BoardEditComponent.prototype, "boardCreated", void 0);
+    BoardEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-directive',
-            template: __webpack_require__(/*! ./directive.component.html */ "./src/app/directive/directive.component.html"),
-            styles: ["\n    .textColor {\n      color: white;\n    }\n  "]
-        }),
-        __metadata("design:paramtypes", [])
-    ], DirectiveComponent);
-    return DirectiveComponent;
+            selector: 'app-board-edit',
+            template: __webpack_require__(/*! ./board-edit.component.html */ "./src/app/board/board-list/board-edit/board-edit.component.html"),
+            styleUrls: []
+        })
+    ], BoardEditComponent);
+    return BoardEditComponent;
 }());
 
 
 
 /***/ }),
 
-/***/ "./src/app/server/server.component.html":
-/*!**********************************************!*\
-  !*** ./src/app/server/server.component.html ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p [ngStyle]=\"{backgroundColor: getColor()}\"\n   [ngClass]=\"{online: serverStatus === 'online'}\">\n  {{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}\n</p>\n"
-
-/***/ }),
-
-/***/ "./src/app/server/server.component.ts":
-/*!********************************************!*\
-  !*** ./src/app/server/server.component.ts ***!
-  \********************************************/
-/*! exports provided: ServerComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServerComponent", function() { return ServerComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var ServerComponent = /** @class */ (function () {
-    function ServerComponent() {
-        this.serverId = 10;
-        this.serverStatus = 'offline';
-        this.serverStatus = Math.random() > 0.5 ? 'online' : 'offline';
-    }
-    ServerComponent.prototype.getServerStatus = function () {
-        return this.serverStatus;
-    };
-    ServerComponent.prototype.getColor = function () {
-        return this.serverStatus === 'online' ? 'green' : 'red';
-    };
-    ServerComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-server',
-            template: __webpack_require__(/*! ./server.component.html */ "./src/app/server/server.component.html"),
-            styles: ["\n    .online {\n      color: white;\n    }\n  "]
-        }),
-        __metadata("design:paramtypes", [])
-    ], ServerComponent);
-    return ServerComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/servers/servers.component.css":
-/*!***********************************************!*\
-  !*** ./src/app/servers/servers.component.css ***!
-  \***********************************************/
+/***/ "./src/app/board/board-list/board-list.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/board/board-list/board-list.component.css ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -266,123 +257,169 @@ module.exports = ""
 
 /***/ }),
 
-/***/ "./src/app/servers/servers.component.html":
-/*!************************************************!*\
-  !*** ./src/app/servers/servers.component.html ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<label>Server Name</label>\n<!--[Example] One way Binding-->\n<!--<input-->\n  <!--type=\"text\"-->\n  <!--class=\"form-control\"-->\n  <!--(input)=\"onUpdateServerName($event)\">-->\n\n<!--[Example] Two way Binding-->\n<input\n  type=\"text\"\n  class=\"form-control\"\n  [(ngModel)]=\"serverName\" >\n<!--<p>{{ serverName }}</p>-->\n<button\n  class=\"btn btn-primary\"\n  [disabled]=\"!allowNewServer\"\n  (click)=\"onCreateServer()\">Add New Server</button>\n<!--<p [innerText]=\"allowNewServer\" ></p>-->\n<!--<p>{{allowNewServer}}</p>-->\n<!--<p>{{ serverCreationStatus }}</p>-->\n<p *ngIf=\"serverCreated; else noServer\">Server was created, server name is {{serverName}}</p>\n<ng-template #noServer>\n  <p>No server was created!</p>\n</ng-template>\n\n<app-server *ngFor=\"let server of servers\"></app-server>\n\n<!--<label>Username</label>-->\n<!--<input-->\n  <!--type=\"text\"-->\n  <!--class=\"form-control\"-->\n  <!--[(ngModel)]=\"username\">-->\n  <!--&lt;!&ndash;(input)=\"onUsernameInput()\">&ndash;&gt;-->\n<!--<button-->\n  <!--class=\"btn btn-primary\"-->\n  <!--[disabled]=\"username === ''\"-->\n  <!--(click)=\"username = ''\" >-->\n  <!--&lt;!&ndash;(click) = \"resetUsername()\" >&ndash;&gt;-->\n  <!--Reset Username</button>-->\n<!--&lt;!&ndash;[disabled]=\"!allowUserReset\"&ndash;&gt;-->\n<!--<p>{{ username }}</p>-->\n"
-
-/***/ }),
-
-/***/ "./src/app/servers/servers.component.ts":
-/*!**********************************************!*\
-  !*** ./src/app/servers/servers.component.ts ***!
-  \**********************************************/
-/*! exports provided: ServersComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServersComponent", function() { return ServersComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var ServersComponent = /** @class */ (function () {
-    function ServersComponent() {
-        var _this = this;
-        this.allowNewServer = false;
-        this.serverCreationStatus = 'No server was created!';
-        this.serverName = 'Testserver';
-        this.username = '';
-        this.allowUserReset = false;
-        this.serverCreated = false;
-        this.servers = ['Testserver 1', 'Testserver 2'];
-        setTimeout(function () {
-            _this.allowNewServer = true;
-        }, 2000);
-    }
-    ServersComponent.prototype.ngOnInit = function () {
-    };
-    ServersComponent.prototype.onCreateServer = function () {
-        this.serverCreated = true;
-        this.servers.push(this.serverName);
-        this.serverCreationStatus = 'A new server was created! Server name is ' + this.serverName;
-    };
-    ServersComponent.prototype.onUpdateServerName = function (event) {
-        this.serverName = event.target.value;
-    };
-    ServersComponent.prototype.onUsernameInput = function () {
-        if (this.username == null || this.username == '') {
-            this.allowUserReset = false;
-        }
-        else {
-            this.allowUserReset = true;
-        }
-    };
-    ServersComponent.prototype.resetUsername = function () {
-        this.username = '';
-        this.allowUserReset = false;
-    };
-    ServersComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            // if the inline html code exceed 3 lines you better use external (templateUrl)
-            // [#1] get it from tag Name
-            selector: 'app-servers',
-            template: __webpack_require__(/*! ./servers.component.html */ "./src/app/servers/servers.component.html"),
-            styles: [__webpack_require__(/*! ./servers.component.css */ "./src/app/servers/servers.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], ServersComponent);
-    return ServersComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/success-alert/success-alert.component.css":
-/*!***********************************************************!*\
-  !*** ./src/app/success-alert/success-alert.component.css ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "p {\n  padding: 10px;\n  color: white;\n  background-color: green;\n  border: solid;\n  border-color: darkgreen;\n}\n"
-
-/***/ }),
-
-/***/ "./src/app/success-alert/success-alert.component.html":
+/***/ "./src/app/board/board-list/board-list.component.html":
 /*!************************************************************!*\
-  !*** ./src/app/success-alert/success-alert.component.html ***!
+  !*** ./src/app/board/board-list/board-list.component.html ***!
   \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  It was very Successfull!\n</p>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-xs-10\">\n    <app-board-edit (boardCreated)=\"onBoardCreated($event)\"></app-board-edit>\n    <hr>\n    <ul class=\"list-group\">\n      <a\n        class=\"list-group-item\"\n        style=\"cursor: pointer\"\n        *ngFor=\"let board of boards\">\n        {{ board.name }} - {{ board.category }} - {{ board.description}}\n      </a>\n    </ul>\n  </div>\n</div>\n"
 
 /***/ }),
 
-/***/ "./src/app/success-alert/success-alert.component.ts":
+/***/ "./src/app/board/board-list/board-list.component.ts":
 /*!**********************************************************!*\
-  !*** ./src/app/success-alert/success-alert.component.ts ***!
+  !*** ./src/app/board/board-list/board-list.component.ts ***!
   \**********************************************************/
-/*! exports provided: SuccessAlertComponent */
+/*! exports provided: BoardListComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SuccessAlertComponent", function() { return SuccessAlertComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoardListComponent", function() { return BoardListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _shared_board_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/board.model */ "./src/app/shared/board.model.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var BoardListComponent = /** @class */ (function () {
+    function BoardListComponent() {
+        this.boards = [
+            new _shared_board_model__WEBPACK_IMPORTED_MODULE_1__["Board"]("Hoon's Refresh board", 'Life', 'Dreams for enjoying my life'),
+            new _shared_board_model__WEBPACK_IMPORTED_MODULE_1__["Board"]("Hoon's Career board", 'IT', 'Dreams for being better Programmer')
+        ];
+    }
+    BoardListComponent.prototype.ngOnInit = function () {
+    };
+    BoardListComponent.prototype.onBoardCreated = function (newBoardInfo) {
+        //console.log(newBoardInfo);
+        this.boards.push(newBoardInfo);
+    };
+    BoardListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-board-list',
+            template: __webpack_require__(/*! ./board-list.component.html */ "./src/app/board/board-list/board-list.component.html"),
+            styles: [__webpack_require__(/*! ./board-list.component.css */ "./src/app/board/board-list/board-list.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], BoardListComponent);
+    return BoardListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-detail/dream-detail.component.css":
+/*!****************************************************************!*\
+  !*** ./src/app/dreams/dream-detail/dream-detail.component.css ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-detail/dream-detail.component.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/dreams/dream-detail/dream-detail.component.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <img\n      [src]=\"dream.imagePath\"\n      alt=\"{{ dream.name }}\"\n      class=\"img-responsive\"\n      style=\"max-height: 250px\">\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <h1>{{ dream.name }}</h1>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <div class=\"btn-group\">\n      <button\n        type=\"button\"\n        class=\"btn btn-primary dropdown-toggle\">\n        Manage Dream <span class=\"caret\"></span>\n      </button>\n      <ul class=\"dropdown-menu\">\n        <li><a href=\"#\">To Dream Board List</a></li>\n        <li><a href=\"#\">Edit Dream</a></li>\n        <li><a href=\"#\">Delete Dream</a></li>\n      </ul>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    {{ dream.description }}\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    Boards\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-detail/dream-detail.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/dreams/dream-detail/dream-detail.component.ts ***!
+  \***************************************************************/
+/*! exports provided: DreamDetailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DreamDetailComponent", function() { return DreamDetailComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _dream_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dream.model */ "./src/app/dreams/dream.model.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DreamDetailComponent = /** @class */ (function () {
+    function DreamDetailComponent() {
+    }
+    DreamDetailComponent.prototype.ngOnInit = function () {
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", _dream_model__WEBPACK_IMPORTED_MODULE_1__["Dream"])
+    ], DreamDetailComponent.prototype, "dream", void 0);
+    DreamDetailComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-dream-detail',
+            template: __webpack_require__(/*! ./dream-detail.component.html */ "./src/app/dreams/dream-detail/dream-detail.component.html"),
+            styles: [__webpack_require__(/*! ./dream-detail.component.css */ "./src/app/dreams/dream-detail/dream-detail.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], DreamDetailComponent);
+    return DreamDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-list/dream-item/dream-item.component.css":
+/*!***********************************************************************!*\
+  !*** ./src/app/dreams/dream-list/dream-item/dream-item.component.css ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-list/dream-item/dream-item.component.html":
+/*!************************************************************************!*\
+  !*** ./src/app/dreams/dream-list/dream-item/dream-item.component.html ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<a href=\"#\"\n   class=\"list-group-item clearfix\"\n   (click)=\"onItemClick()\"\n>\n  <div class=\"pull-left\">\n    <h4 class=\"list-group-item-heading\">{{ dreamInfo.name }}</h4>\n    <p class=\"list-group-item-text\">{{ dreamInfo.description }}</p>\n  </div>\n  <span class=\"pull-right\">\n    <img\n      [src]=\"dreamInfo.imagePath\"\n      alt=\"{{ dreamInfo.name }}\"\n      class=\"img-responsive\"\n      style=\"max-height: 50px;\">\n  </span>\n</a>\n"
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-list/dream-item/dream-item.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/dreams/dream-list/dream-item/dream-item.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: DreamItemComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DreamItemComponent", function() { return DreamItemComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -394,36 +431,172 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var SuccessAlertComponent = /** @class */ (function () {
-    function SuccessAlertComponent() {
+var DreamItemComponent = /** @class */ (function () {
+    function DreamItemComponent() {
+        this.showItemDetail = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
-    SuccessAlertComponent.prototype.ngOnInit = function () {
+    DreamItemComponent.prototype.ngOnInit = function () {
     };
-    SuccessAlertComponent = __decorate([
+    DreamItemComponent.prototype.onItemClick = function () {
+        this.showItemDetail.emit();
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], DreamItemComponent.prototype, "dreamInfo", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", Object)
+    ], DreamItemComponent.prototype, "showItemDetail", void 0);
+    DreamItemComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: '[app-success-alert]',
-            template: __webpack_require__(/*! ./success-alert.component.html */ "./src/app/success-alert/success-alert.component.html"),
-            styles: [__webpack_require__(/*! ./success-alert.component.css */ "./src/app/success-alert/success-alert.component.css")]
+            selector: 'app-dream-item',
+            template: __webpack_require__(/*! ./dream-item.component.html */ "./src/app/dreams/dream-list/dream-item/dream-item.component.html"),
+            styles: [__webpack_require__(/*! ./dream-item.component.css */ "./src/app/dreams/dream-list/dream-item/dream-item.component.css")]
         }),
         __metadata("design:paramtypes", [])
-    ], SuccessAlertComponent);
-    return SuccessAlertComponent;
+    ], DreamItemComponent);
+    return DreamItemComponent;
 }());
 
 
 
 /***/ }),
 
-/***/ "./src/app/warning-alert/warning-alert.component.ts":
-/*!**********************************************************!*\
-  !*** ./src/app/warning-alert/warning-alert.component.ts ***!
-  \**********************************************************/
-/*! exports provided: WarningAlertComponent */
+/***/ "./src/app/dreams/dream-list/dream-list.component.css":
+/*!************************************************************!*\
+  !*** ./src/app/dreams/dream-list/dream-list.component.css ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-list/dream-list.component.html":
+/*!*************************************************************!*\
+  !*** ./src/app/dreams/dream-list/dream-list.component.html ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <button class=\"btn btn-success\">New Dream</button>\n  </div>\n</div>\n<hr>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <app-dream-item\n      *ngFor=\"let dream of dreams\"\n      [dreamInfo]=\"dream\"\n      (showItemDetail) = \"onDreamSelected(dream)\"\n    ></app-dream-item>\n  </div>\n</div>\n\n"
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-list/dream-list.component.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/dreams/dream-list/dream-list.component.ts ***!
+  \***********************************************************/
+/*! exports provided: DreamListComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WarningAlertComponent", function() { return WarningAlertComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DreamListComponent", function() { return DreamListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _dream_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dream.model */ "./src/app/dreams/dream.model.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DreamListComponent = /** @class */ (function () {
+    function DreamListComponent() {
+        this.dreamWasSelected = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.dreams = [
+            //Dummy data
+            new _dream_model__WEBPACK_IMPORTED_MODULE_1__["Dream"]('Family Europe Travel', 'We will go more than 5 countries..', 'https://www.eturbonews.com/wp-content/uploads/2017/05/EUROPEtravel-696x492.jpg'),
+            new _dream_model__WEBPACK_IMPORTED_MODULE_1__["Dream"]('Register Mobile App (iOS or Android)', 'Should learn Swift or Android..', 'https://dbcms.s3.amazonaws.com/devbridgecom/bcms/image/22d10840edda459883362150cf097441/team-app.jpg'),
+            new _dream_model__WEBPACK_IMPORTED_MODULE_1__["Dream"]('Hobby for MTB', 'First I need to buy mountain bike..', 'https://static.f-mts.com/u0421/pics/great-mountain-bike-trails-in-val-venosta-413-1200x485-c-x50-y50.jpg')
+        ];
+    }
+    DreamListComponent.prototype.ngOnInit = function () {
+    };
+    DreamListComponent.prototype.onDreamSelected = function (dream) {
+        this.dreamWasSelected.emit(dream);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", Object)
+    ], DreamListComponent.prototype, "dreamWasSelected", void 0);
+    DreamListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-dream-list',
+            template: __webpack_require__(/*! ./dream-list.component.html */ "./src/app/dreams/dream-list/dream-list.component.html"),
+            styles: [__webpack_require__(/*! ./dream-list.component.css */ "./src/app/dreams/dream-list/dream-list.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], DreamListComponent);
+    return DreamListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream.model.ts":
+/*!***************************************!*\
+  !*** ./src/app/dreams/dream.model.ts ***!
+  \***************************************/
+/*! exports provided: Dream */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dream", function() { return Dream; });
+var Dream = /** @class */ (function () {
+    function Dream(name, desc, imagePath) {
+        this.name = name;
+        this.description = desc;
+        this.imagePath = imagePath;
+    }
+    return Dream;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dreams/dreams.component.css":
+/*!*********************************************!*\
+  !*** ./src/app/dreams/dreams.component.css ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/dreams/dreams.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/dreams/dreams.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-5\">\n    <app-dream-list (dreamWasSelected)=\"selectedDream = $event\"></app-dream-list>\n  </div>\n  <div class=\"col-md-7\">\n    <app-dream-detail\n      *ngIf=\"selectedDream; else infoText\"\n      [dream]=\"selectedDream\"></app-dream-detail>\n    <ng-template #infoText>\n      <p>Please select a Dream!</p>\n    </ng-template>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/dreams/dreams.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/dreams/dreams.component.ts ***!
+  \********************************************/
+/*! exports provided: DreamsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DreamsComponent", function() { return DreamsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -431,19 +604,118 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
-var WarningAlertComponent = /** @class */ (function () {
-    function WarningAlertComponent() {
+var DreamsComponent = /** @class */ (function () {
+    function DreamsComponent() {
     }
-    WarningAlertComponent = __decorate([
+    DreamsComponent.prototype.ngOnInit = function () {
+    };
+    DreamsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-warningAlert',
-            // templateUrl: './warning-alert.component.html',
-            template: "\n    <p>This is the Warning, you are in danger!</p>\n  ",
-            styles: ["\n    p{\n      padding: 10px;\n      color: white;\n      background-color: red;\n      border: solid;\n      border-color: darkred;\n    }\n  "]
-        })
-    ], WarningAlertComponent);
-    return WarningAlertComponent;
+            selector: 'app-dreams',
+            template: __webpack_require__(/*! ./dreams.component.html */ "./src/app/dreams/dreams.component.html"),
+            styles: [__webpack_require__(/*! ./dreams.component.css */ "./src/app/dreams/dreams.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], DreamsComponent);
+    return DreamsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/header/header.component.css":
+/*!*********************************************!*\
+  !*** ./src/app/header/header.component.css ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/header/header.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/header/header.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a href=\"#\" class=\"navbar-brand\">Dream Book</a>\n    </div>\n\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li><a href=\"#\" (click)=\"onSelect('boardList')\">Board List</a></li>\n        <li><a href=\"#\" (click)=\"onSelect('dream')\">Dreams</a></li>\n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" role=\"button\">Manage <span class=\"caret\"></span></a>\n          <ul class=\"dropdown-menu\">\n            <li><a href=\"#\">Save Data</a></li>\n            <li><a href=\"#\">Fetch Data</a></li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n\n"
+
+/***/ }),
+
+/***/ "./src/app/header/header.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/header/header.component.ts ***!
+  \********************************************/
+/*! exports provided: HeaderComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderComponent", function() { return HeaderComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HeaderComponent = /** @class */ (function () {
+    function HeaderComponent() {
+        this.featureSelected = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+    }
+    HeaderComponent.prototype.ngOnInit = function () {
+    };
+    HeaderComponent.prototype.onSelect = function (menu) {
+        this.featureSelected.emit(menu);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", Object)
+    ], HeaderComponent.prototype, "featureSelected", void 0);
+    HeaderComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-header',
+            template: __webpack_require__(/*! ./header.component.html */ "./src/app/header/header.component.html"),
+            styles: [__webpack_require__(/*! ./header.component.css */ "./src/app/header/header.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HeaderComponent);
+    return HeaderComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/board.model.ts":
+/*!***************************************!*\
+  !*** ./src/app/shared/board.model.ts ***!
+  \***************************************/
+/*! exports provided: Board */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Board", function() { return Board; });
+var Board = /** @class */ (function () {
+    function Board(name, category, description) {
+        this.name = name;
+        this.category = category;
+        this.description = description;
+    }
+    return Board;
 }());
 
 
