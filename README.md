@@ -15,3 +15,5 @@
 - Maven
 - Angular 6
 - Tomcat
+- JPA (Java Persistence API)
+- PostgreSQL
