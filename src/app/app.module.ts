@@ -10,6 +10,7 @@ import { DreamListComponent } from './dreams/dream-list/dream-list.component';
 import { DreamItemComponent } from './dreams/dream-list/dream-item/dream-item.component';
 import { DreamDetailComponent } from './dreams/dream-detail/dream-detail.component';
 import { DreamsComponent } from './dreams/dreams.component';
+import { DropdownDirective } from "./shared/dropdown.directive";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DreamsComponent } from './dreams/dreams.component';
     DreamListComponent,
     DreamItemComponent,
     DreamDetailComponent,
-    DreamsComponent
+    DreamsComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
