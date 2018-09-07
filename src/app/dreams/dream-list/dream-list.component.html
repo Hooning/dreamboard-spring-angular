@@ -8,9 +8,8 @@
   <div class="col-xs-12">
     <app-dream-item
       *ngFor="let dream of dreams"
-      [dreamInfo]="dream"
-      (showItemDetail) = "onDreamSelected(dream)"
-    ></app-dream-item>
+      [dreamInfo]="dream">
+    </app-dream-item>
   </div>
 </div>
 

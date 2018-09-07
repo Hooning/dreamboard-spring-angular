@@ -1,5 +1,6 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
-import { Board } from '../../shared/board.model';
+import { Component, OnInit } from '@angular/core';
+import { Board } from './board.model';
+import { BoardService } from "../board.service";
 
 @Component({
   selector: 'app-board-list',
@@ -7,18 +8,18 @@ import { Board } from '../../shared/board.model';
   styleUrls: ['./board-list.component.css']
 })
 export class BoardListComponent implements OnInit {
-  boards: Board[] = [
-    new Board("Hoon's Refresh board", 'Life', 'Dreams for enjoying my life'),
-    new Board("Hoon's Career board", 'IT', 'Dreams for being better Programmer')
-  ];
+  boards: Board[] = [];
 
-  constructor() { }
+  constructor(private boardService: BoardService) { }
 
   ngOnInit() {
+    this.boards = this.boardService.getBoards();
+
+    this.boardService.boardChanged.subscribe(
+      (boards: Board[]) => {
+        this.boards = boards;
+      }
+    );
   }
 
-  onBoardCreated(newBoardInfo: Board) {
-    //console.log(newBoardInfo);
-    this.boards.push(newBoardInfo);
-  }
 }

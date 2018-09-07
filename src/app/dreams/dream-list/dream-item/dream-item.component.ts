@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DreamService } from "../../dream.service";
 
 @Component({
   selector: 'app-dream-item',
@@ -7,15 +8,16 @@ import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 })
 export class DreamItemComponent implements OnInit {
   @Input() dreamInfo;
-  @Output() showItemDetail = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private dreamService: DreamService) {
+
+  }
 
   ngOnInit() {
   }
 
-  onItemClick() {
-    this.showItemDetail.emit();
+  onSelected() {
+    this.dreamService.dreamSelected.emit(this.dreamInfo);
   }
 
 }

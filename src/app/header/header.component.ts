@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.onSelect('boardList');
   }
 
   onSelect(menu: string) {
