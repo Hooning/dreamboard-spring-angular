@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DreamService } from "../../dream.service";
+import {ActivatedRouteSnapshot, Data} from "@angular/router";
 
 @Component({
   selector: 'app-dream-item',
@@ -14,11 +15,7 @@ export class DreamItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-  }
 
-  onSelected() {
-    this.dreamService.dreamSelected.emit(this.dreamInfo);
   }
 
 }

@@ -13,12 +13,11 @@ interface Dream {
 }
 
 @Injectable()
-export class DreamResolver implements Resolve<Dream[]>{
+export class DreamResolver implements Resolve<Dream> {
   constructor(private dreamService: DreamService) {}
 
   resolve(route: ActivatedRouteSnapshot,
-          state: RouterStateSnapshot): Observable <Dream[]> | Promise <Dream[]> | Dream[] {
-    return this.dreamService.getDreams(+route.params['boardId']);
+          state: RouterStateSnapshot): Observable<Dream> | Promise<Dream> | Dream {
+    return this.dreamService.getDream( +route.params['boardId'], +route.params['dreamId']);
   }
-
 }

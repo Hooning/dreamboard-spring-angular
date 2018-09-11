@@ -4,6 +4,7 @@ import { EventEmitter } from "@angular/core";
 export class DreamService {
   dreamSelected = new EventEmitter<Dream>();
   selectedDreams: Dream[];
+  selectedDream: Dream;
 
   private dreams: Dream[] = [
     //Dummy data
@@ -18,14 +19,22 @@ export class DreamService {
   // }
 
   getDreams(boardId: number) {
-    const selectedDreams = this.dreams.slice().filter(
+    this.selectedDreams = this.dreams.slice().filter(
       (d) => {
         return d.boardId === boardId
       }
     );
 
-    console.log(selectedDreams);
+    return this.selectedDreams;
+  }
 
-    return selectedDreams;
+  getDream(boardId: number, dreamId: number) {
+    this.selectedDream = this.selectedDreams.slice().filter(
+      (d) => {
+        return d.boardId === boardId && d.dreamId === dreamId;
+      }
+    )[0];
+
+    return this.selectedDream;
   }
 }

@@ -15,8 +15,10 @@ import { BoardService } from "./board/board.service";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from "@angular/common/http";
-import { DreamResolver } from "./dreams/dream-resolver.service";
 import { DreamService } from "./dreams/dream.service";
+import { DreamsResolver } from "./dreams/dreams-resolver.service";
+import { DreamResolver } from "./dreams/dream-resolver.service";
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -35,9 +37,10 @@ import { DreamService } from "./dreams/dream.service";
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpModule
   ],
-  providers: [BoardService, DreamService, DreamResolver],
+  providers: [BoardService, DreamService, DreamsResolver, DreamResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
