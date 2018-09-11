@@ -30,10 +30,8 @@
 /out-tsc
 
 # dependencies
-/node_modules
-/node
-node/
-node_modules/
+node
+node_modules
 
 # IDEs and editors
 /.idea
