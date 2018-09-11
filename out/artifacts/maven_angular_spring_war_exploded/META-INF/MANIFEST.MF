@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: maven-angular-spring
-Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: hoontime
-Implementation-Vendor-Id: com.practice
-Created-By: IntelliJ IDEA
-Build-Jdk: 1.8
-Main-Class: ${start-class}
-

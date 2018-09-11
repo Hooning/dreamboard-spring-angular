@@ -25,7 +25,7 @@ export class BoardEditComponent{
     //   this.categoryInputRef.nativeElement.value,
     //   this.descriptionInputRef.nativeElement.value
     //   )
-    const brdId = 0;
+    const brdId = this.boardService.getNextBoardId();
     const brdName = this.nameInputRef.nativeElement.value;
     const brdCategory = this.categoryInputRef.nativeElement.value;
     const brdDesc = this.descriptionInputRef.nativeElement.value;

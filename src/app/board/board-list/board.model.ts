@@ -1,5 +1,3 @@
-import {Dream} from "../../dreams/dream.model";
-
 export class Board {
   public boardId: number;
   public name: string;

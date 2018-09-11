@@ -14,6 +14,7 @@ export class DreamItemComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
   onSelected() {

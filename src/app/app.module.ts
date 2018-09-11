@@ -12,6 +12,11 @@ import { DreamDetailComponent } from './dreams/dream-detail/dream-detail.compone
 import { DreamsComponent } from './dreams/dreams.component';
 import { DropdownDirective } from "./shared/dropdown.directive";
 import { BoardService } from "./board/board.service";
+import { AppRoutingModule } from "./app-routing.module";
+import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from "@angular/common/http";
+import { DreamResolver } from "./dreams/dream-resolver.service";
+import { DreamService } from "./dreams/dream.service";
 
 @NgModule({
   declarations: [
@@ -23,13 +28,16 @@ import { BoardService } from "./board/board.service";
     DreamItemComponent,
     DreamDetailComponent,
     DreamsComponent,
-    DropdownDirective
+    DropdownDirective,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [BoardService],
+  providers: [BoardService, DreamService, DreamResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

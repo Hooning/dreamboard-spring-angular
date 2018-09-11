@@ -1,13 +1,14 @@
-<app-header (featureSelected)="onNavigate($event)"></app-header>
+<app-header></app-header>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-board-list
-        *ngIf="displayBoardList" >
-      </app-board-list>
-      <app-dreams
-        *ngIf="displayDream" >
-      </app-dreams>
+      <!--<app-board-list-->
+        <!--*ngIf="displayBoard" >-->
+      <!--</app-board-list>-->
+      <!--<app-dreams-->
+        <!--*ngIf="displayDream" >-->
+      <!--</app-dreams>-->
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

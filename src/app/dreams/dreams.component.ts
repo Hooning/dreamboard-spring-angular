@@ -5,8 +5,7 @@ import { DreamService } from "./dream.service";
 @Component({
   selector: 'app-dreams',
   templateUrl: './dreams.component.html',
-  styleUrls: ['./dreams.component.css'],
-  providers: [DreamService]
+  styleUrls: ['./dreams.component.css']
 })
 export class DreamsComponent implements OnInit {
   selectedDream: Dream;
@@ -15,8 +14,11 @@ export class DreamsComponent implements OnInit {
 
   ngOnInit() {
     this.dreamService.dreamSelected.subscribe(
-      (dream: Dream) => this.selectedDream = dream
+      (dream: Dream) => {
+        this.selectedDream = dream;
+      }
     );
+
   }
 
 }

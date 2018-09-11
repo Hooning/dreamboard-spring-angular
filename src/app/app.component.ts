@@ -7,22 +7,22 @@ import { Component } from '@angular/core';
 
 })
 export class AppComponent {
-  displayBoardList: boolean = false;
-  displayDream: boolean = false;
+  // displayBoard: boolean = false;
+  // displayDream: boolean = false;
 
   constructor() {
 
   }
 
-  onNavigate(menu: string) {
-    console.log("[" + menu + "] Menu clicked!");
-    if (menu === 'boardList') {
-      this.displayBoardList = true;
-      this.displayDream = false;
-    }else{
-      this.displayDream = true;
-      this.displayBoardList = false;
-    }
-  }
+  // onNavigate(menu: string) {
+  //   console.log("[" + menu + "] Menu clicked!");
+  //   if (menu === 'board') {
+  //     this.displayBoard = true;
+  //     this.displayDream = false;
+  //   }else{
+  //     this.displayDream = true;
+  //     this.displayBoard = false;
+  //   }
+  // }
 
 }
