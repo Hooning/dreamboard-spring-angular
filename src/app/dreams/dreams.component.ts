@@ -15,7 +15,6 @@ export class DreamsComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-
     this.route.data
       .subscribe(
         (data: Data) => {

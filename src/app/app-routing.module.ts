@@ -5,7 +5,6 @@ import { DreamsComponent } from "./dreams/dreams.component";
 
 import { HomeComponent } from "./home/home.component";
 import { DreamsResolver} from "./dreams/dreams-resolver.service";
-import { DreamDetailComponent } from "./dreams/dream-detail/dream-detail.component";
 import { DreamResolver } from "./dreams/dream-resolver.service";
 
 const appRoutes: Routes = [
@@ -14,13 +13,7 @@ const appRoutes: Routes = [
   { path: 'boards', component: BoardListComponent },
   { path: 'boards/:boardId/dreams',
     component: DreamsComponent,
-    resolve: { dreams: DreamsResolver },
-    // children: [
-    //   { path: ':dreamId',
-    //     component: DreamDetailComponent,
-    //     resolve: { dream: DreamResolver}}
-    // ]
-  },
+    resolve: { dreams: DreamsResolver } },
   { path: 'boards/:boardId/dreams/:dreamId',
     component: DreamsComponent,
     resolve: { dreams: DreamsResolver, dream: DreamResolver }}

@@ -1,6 +1,8 @@
-<a href="#"
-   class="list-group-item clearfix"
-   [routerLink]="['/boards', dreamInfo.boardId, 'dreams', dreamInfo.dreamId ]"
+<a
+  style="cursor: pointer"
+  class="list-group-item clearfix"
+  routerLinkActive="active"
+  [routerLink]="['/boards', dreamInfo.boardId, 'dreams', dreamInfo.dreamId ]"
 >
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{ dreamInfo.name }}</h4>

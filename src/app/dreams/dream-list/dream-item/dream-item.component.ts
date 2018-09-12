@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DreamService } from "../../dream.service";
-import {ActivatedRouteSnapshot, Data} from "@angular/router";
 
 @Component({
   selector: 'app-dream-item',
@@ -9,10 +7,6 @@ import {ActivatedRouteSnapshot, Data} from "@angular/router";
 })
 export class DreamItemComponent implements OnInit {
   @Input() dreamInfo;
-
-  constructor(private dreamService: DreamService) {
-
-  }
 
   ngOnInit() {
 
