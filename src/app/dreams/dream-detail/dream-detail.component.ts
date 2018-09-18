@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { Dream } from "../dream.model";
 
@@ -10,10 +11,18 @@ import { Dream } from "../dream.model";
 export class DreamDetailComponent implements OnInit {
   @Input() dream: Dream;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
 
+  }
+
+  // [routerLink] = "['/boards', dream.boardId, 'dreams', dream.dreamId, 'edit']"
+  onEditDream() {
+    this.router.navigate([
+      '/boards', this.dream.boardId, 'dreams', this.dream.dreamId, 'edit'
+    ])
   }
 
 }

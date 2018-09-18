@@ -23,7 +23,14 @@
         Manage Dream <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a style="cursor: pointer">Edit Dream</a></li>
+        <li>
+          <a
+            style="cursor: pointer"
+            (click) ="onEditDream()"
+          >
+            Edit Dream
+          </a>
+        </li>
         <li><a style="cursor: pointer">Delete Dream</a></li>
       </ul>
     </div>

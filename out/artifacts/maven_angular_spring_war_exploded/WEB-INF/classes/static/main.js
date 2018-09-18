@@ -57,7 +57,18 @@ var appRoutes = [
     { path: 'boards', component: _board_board_list_board_list_component__WEBPACK_IMPORTED_MODULE_2__["BoardListComponent"] },
     { path: 'boards/:boardId/dreams',
         component: _dreams_dreams_component__WEBPACK_IMPORTED_MODULE_3__["DreamsComponent"],
-        resolve: { dreams: _dreams_dream_resolver_service__WEBPACK_IMPORTED_MODULE_5__["DreamResolver"] } }
+    },
+    { path: 'boards/:boardId/dreams/new',
+        component: _dreams_dreams_component__WEBPACK_IMPORTED_MODULE_3__["DreamsComponent"] },
+    { path: 'boards/:boardId/dreams/:dreamId',
+        component: _dreams_dreams_component__WEBPACK_IMPORTED_MODULE_3__["DreamsComponent"],
+        resolve: {
+            // dreams: DreamsResolver,
+            dream: _dreams_dream_resolver_service__WEBPACK_IMPORTED_MODULE_5__["DreamResolver"]
+        }
+    },
+    { path: 'boards/:boardId/dreams/:dreamId/edit',
+        component: _dreams_dreams_component__WEBPACK_IMPORTED_MODULE_3__["DreamsComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -164,14 +175,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _dreams_dream_resolver_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dreams/dream-resolver.service */ "./src/app/dreams/dream-resolver.service.ts");
-/* harmony import */ var _dreams_dream_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dreams/dream.service */ "./src/app/dreams/dream.service.ts");
+/* harmony import */ var _dreams_dream_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dreams/dream.service */ "./src/app/dreams/dream.service.ts");
+/* harmony import */ var _dreams_dreams_resolver_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dreams/dreams-resolver.service */ "./src/app/dreams/dreams-resolver.service.ts");
+/* harmony import */ var _dreams_dream_resolver_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dreams/dream-resolver.service */ "./src/app/dreams/dream-resolver.service.ts");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _dreams_dream_edit_dream_edit_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./dreams/dream-edit/dream-edit.component */ "./src/app/dreams/dream-edit/dream-edit.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -203,6 +220,7 @@ var AppModule = /** @class */ (function () {
                 _dreams_dream_list_dream_list_component__WEBPACK_IMPORTED_MODULE_7__["DreamListComponent"],
                 _dreams_dream_list_dream_item_dream_item_component__WEBPACK_IMPORTED_MODULE_8__["DreamItemComponent"],
                 _dreams_dream_detail_dream_detail_component__WEBPACK_IMPORTED_MODULE_9__["DreamDetailComponent"],
+                _dreams_dream_edit_dream_edit_component__WEBPACK_IMPORTED_MODULE_20__["DreamEditComponent"],
                 _dreams_dreams_component__WEBPACK_IMPORTED_MODULE_10__["DreamsComponent"],
                 _shared_dropdown_directive__WEBPACK_IMPORTED_MODULE_11__["DropdownDirective"],
                 _home_home_component__WEBPACK_IMPORTED_MODULE_14__["HomeComponent"]
@@ -211,9 +229,10 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_13__["AppRoutingModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClientModule"],
+                _angular_http__WEBPACK_IMPORTED_MODULE_19__["HttpModule"]
             ],
-            providers: [_board_board_service__WEBPACK_IMPORTED_MODULE_12__["BoardService"], _dreams_dream_service__WEBPACK_IMPORTED_MODULE_17__["DreamService"], _dreams_dream_resolver_service__WEBPACK_IMPORTED_MODULE_16__["DreamResolver"]],
+            providers: [_board_board_service__WEBPACK_IMPORTED_MODULE_12__["BoardService"], _dreams_dream_service__WEBPACK_IMPORTED_MODULE_16__["DreamService"], _dreams_dreams_resolver_service__WEBPACK_IMPORTED_MODULE_17__["DreamsResolver"], _dreams_dream_resolver_service__WEBPACK_IMPORTED_MODULE_18__["DreamResolver"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -485,7 +504,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <img\n      [src]=\"dream.imagePath\"\n      alt=\"{{ dream.name }}\"\n      class=\"img-responsive\"\n      style=\"max-height: 200px\">\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <h1>{{ dream.name }}</h1>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <div\n      appDropdown\n      class=\"btn-group\">\n      <button\n        type=\"button\"\n        class=\"btn btn-primary dropdown-toggle\">\n        Manage Dream <span class=\"caret\"></span>\n      </button>\n      <ul class=\"dropdown-menu\">\n        <li><a href=\"#\">Edit Dream</a></li>\n        <li><a href=\"#\">Delete Dream</a></li>\n      </ul>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    {{ dream.description }}\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    Planed date: 2020-10-10\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    Estimated cost: € 10000\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <img\n      [src]=\"dream.imagePath\"\n      alt=\"{{ dream.name }}\"\n      class=\"img-responsive\"\n      style=\"max-height: 200px\">\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <h1>{{ dream.name }}</h1>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <div\n      appDropdown\n      class=\"btn-group\">\n      <button\n        type=\"button\"\n        class=\"btn btn-primary dropdown-toggle\">\n        Manage Dream <span class=\"caret\"></span>\n      </button>\n      <ul class=\"dropdown-menu\">\n        <li>\n          <a\n            style=\"cursor: pointer\"\n            (click) =\"onEditDream()\"\n          >\n            Edit Dream\n          </a>\n        </li>\n        <li><a style=\"cursor: pointer\">Delete Dream</a></li>\n      </ul>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    {{ dream.description }}\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    Planed date: 2020-10-10\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    Estimated cost: € 10000\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -500,7 +519,8 @@ module.exports = "<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <img\n  
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DreamDetailComponent", function() { return DreamDetailComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _dream_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dream.model */ "./src/app/dreams/dream.model.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _dream_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dream.model */ "./src/app/dreams/dream.model.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -512,14 +532,23 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var DreamDetailComponent = /** @class */ (function () {
-    function DreamDetailComponent() {
+    function DreamDetailComponent(route, router) {
+        this.route = route;
+        this.router = router;
     }
     DreamDetailComponent.prototype.ngOnInit = function () {
     };
+    // [routerLink] = "['/boards', dream.boardId, 'dreams', dream.dreamId, 'edit']"
+    DreamDetailComponent.prototype.onEditDream = function () {
+        this.router.navigate([
+            '/boards', this.dream.boardId, 'dreams', this.dream.dreamId, 'edit'
+        ]);
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", _dream_model__WEBPACK_IMPORTED_MODULE_1__["Dream"])
+        __metadata("design:type", _dream_model__WEBPACK_IMPORTED_MODULE_2__["Dream"])
     ], DreamDetailComponent.prototype, "dream", void 0);
     DreamDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -527,9 +556,75 @@ var DreamDetailComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dream-detail.component.html */ "./src/app/dreams/dream-detail/dream-detail.component.html"),
             styles: [__webpack_require__(/*! ./dream-detail.component.css */ "./src/app/dreams/dream-detail/dream-detail.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], DreamDetailComponent);
     return DreamDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-edit/dream-edit.component.css":
+/*!************************************************************!*\
+  !*** ./src/app/dreams/dream-edit/dream-edit.component.css ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-edit/dream-edit.component.html":
+/*!*************************************************************!*\
+  !*** ./src/app/dreams/dream-edit/dream-edit.component.html ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  dream-edit works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/dreams/dream-edit/dream-edit.component.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/dreams/dream-edit/dream-edit.component.ts ***!
+  \***********************************************************/
+/*! exports provided: DreamEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DreamEditComponent", function() { return DreamEditComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DreamEditComponent = /** @class */ (function () {
+    function DreamEditComponent(route) {
+        this.route = route;
+    }
+    DreamEditComponent.prototype.ngOnInit = function () { };
+    DreamEditComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-dream-edit',
+            template: __webpack_require__(/*! ./dream-edit.component.html */ "./src/app/dreams/dream-edit/dream-edit.component.html"),
+            styles: [__webpack_require__(/*! ./dream-edit.component.css */ "./src/app/dreams/dream-edit/dream-edit.component.css")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
+    ], DreamEditComponent);
+    return DreamEditComponent;
 }());
 
 
@@ -554,7 +649,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<a href=\"#\"\n   class=\"list-group-item clearfix\"\n   (click)=\"onSelected()\"\n>\n  <div class=\"pull-left\">\n    <h4 class=\"list-group-item-heading\">{{ dreamInfo.name }}</h4>\n    <p class=\"list-group-item-text\">{{ dreamInfo.description }}</p>\n  </div>\n  <span class=\"pull-right\">\n    <img\n      [src]=\"dreamInfo.imagePath\"\n      alt=\"{{ dreamInfo.name }}\"\n      class=\"img-responsive\"\n      style=\"max-height: 50px;\">\n  </span>\n</a>\n"
+module.exports = "<a\n  style=\"cursor: pointer\"\n  class=\"list-group-item clearfix\"\n  routerLinkActive=\"active\"\n  [routerLink]=\"['/boards', dreamInfo.boardId, 'dreams', dreamInfo.dreamId ]\"\n>\n  <div class=\"pull-left\">\n    <h4 class=\"list-group-item-heading\">{{ dreamInfo.name }}</h4>\n    <p class=\"list-group-item-text\">{{ dreamInfo.description }}</p>\n  </div>\n  <span class=\"pull-right\">\n    <img\n      [src]=\"dreamInfo.imagePath\"\n      alt=\"{{ dreamInfo.name }}\"\n      class=\"img-responsive\"\n      style=\"max-height: 50px;\">\n  </span>\n</a>\n"
 
 /***/ }),
 
@@ -569,7 +664,6 @@ module.exports = "<a href=\"#\"\n   class=\"list-group-item clearfix\"\n   (clic
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DreamItemComponent", function() { return DreamItemComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _dream_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../dream.service */ "./src/app/dreams/dream.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -580,15 +674,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
 var DreamItemComponent = /** @class */ (function () {
-    function DreamItemComponent(dreamService) {
-        this.dreamService = dreamService;
+    function DreamItemComponent() {
     }
     DreamItemComponent.prototype.ngOnInit = function () {
-    };
-    DreamItemComponent.prototype.onSelected = function () {
-        this.dreamService.dreamSelected.emit(this.dreamInfo);
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -599,8 +688,7 @@ var DreamItemComponent = /** @class */ (function () {
             selector: 'app-dream-item',
             template: __webpack_require__(/*! ./dream-item.component.html */ "./src/app/dreams/dream-list/dream-item/dream-item.component.html"),
             styles: [__webpack_require__(/*! ./dream-item.component.css */ "./src/app/dreams/dream-list/dream-item/dream-item.component.css")]
-        }),
-        __metadata("design:paramtypes", [_dream_service__WEBPACK_IMPORTED_MODULE_1__["DreamService"]])
+        })
     ], DreamItemComponent);
     return DreamItemComponent;
 }());
@@ -627,7 +715,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <button class=\"btn btn-success\">New Dream</button>\n  </div>\n</div>\n<hr>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <app-dream-item\n      *ngFor=\"let dream of dreams\"\n      [dreamInfo]=\"dream\">\n    </app-dream-item>\n  </div>\n</div>\n\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <button\n      class=\"btn btn-success\"\n      (click)=\"onNewDream()\"\n    >\n      New Dream\n    </button>\n  </div>\n</div>\n<hr>\n<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <app-dream-item\n      *ngFor=\"let dream of dreams\"\n      [dreamInfo]=\"dream\"\n    >\n    </app-dream-item>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -642,8 +730,8 @@ module.exports = "<div class=\"row\">\n  <div class=\"col-xs-12\">\n    <button 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DreamListComponent", function() { return DreamListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _dream_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dream.service */ "./src/app/dreams/dream.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _dream_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dream.service */ "./src/app/dreams/dream.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -657,16 +745,29 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var DreamListComponent = /** @class */ (function () {
-    function DreamListComponent(dreamService, route) {
+    function DreamListComponent(dreamService, route, router) {
         this.dreamService = dreamService;
         this.route = route;
+        this.router = router;
     }
     DreamListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.data
-            .subscribe(function (data) {
-            _this.dreams = data['dreams'];
+        // this.route.data
+        //   .subscribe(
+        //     (data: Data) => {
+        //       this.dreams = data['dreams'];
+        //     }
+        //   );
+        this.route.params
+            .subscribe(function (params) {
+            _this.boardId = params['boardId'];
+            _this.dreams = _this.dreamService.getDreams(+_this.boardId);
+            // console.log('this.dreams: ' + this.dreams);
         });
+    };
+    // <!--[routerLink] = "['/boards', dreams[0].boardId, 'dreams', 'new']"-->
+    DreamListComponent.prototype.onNewDream = function () {
+        this.router.navigate(['/boards', this.boardId, 'dreams', 'new']);
     };
     DreamListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -674,8 +775,9 @@ var DreamListComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dream-list.component.html */ "./src/app/dreams/dream-list/dream-list.component.html"),
             styles: [__webpack_require__(/*! ./dream-list.component.css */ "./src/app/dreams/dream-list/dream-list.component.css")]
         }),
-        __metadata("design:paramtypes", [_dream_service__WEBPACK_IMPORTED_MODULE_1__["DreamService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+        __metadata("design:paramtypes", [_dream_service__WEBPACK_IMPORTED_MODULE_2__["DreamService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], DreamListComponent);
     return DreamListComponent;
 }());
@@ -712,7 +814,7 @@ var DreamResolver = /** @class */ (function () {
         this.dreamService = dreamService;
     }
     DreamResolver.prototype.resolve = function (route, state) {
-        return this.dreamService.getDreams(+route.params['boardId']);
+        return this.dreamService.getDream(+route.params['boardId'], +route.params['dreamId']);
     };
     DreamResolver = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -779,13 +881,59 @@ var DreamService = /** @class */ (function () {
     //   return this.dreams.slice();
     // }
     DreamService.prototype.getDreams = function (boardId) {
-        var selectedDreams = this.dreams.slice().filter(function (d) {
+        this.selectedDreams = this.dreams.slice().filter(function (d) {
             return d.boardId === boardId;
         });
-        console.log(selectedDreams);
-        return selectedDreams;
+        return this.selectedDreams;
+    };
+    DreamService.prototype.getDream = function (boardId, dreamId) {
+        this.selectedDream = this.selectedDreams.slice().filter(function (d) {
+            return d.boardId === boardId && d.dreamId === dreamId;
+        })[0];
+        return this.selectedDream;
     };
     return DreamService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dreams/dreams-resolver.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/dreams/dreams-resolver.service.ts ***!
+  \***************************************************/
+/*! exports provided: DreamsResolver */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DreamsResolver", function() { return DreamsResolver; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _dream_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dream.service */ "./src/app/dreams/dream.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DreamsResolver = /** @class */ (function () {
+    function DreamsResolver(dreamService) {
+        this.dreamService = dreamService;
+    }
+    DreamsResolver.prototype.resolve = function (route, state) {
+        return this.dreamService.getDreams(+route.params['boardId']);
+    };
+    DreamsResolver = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_dream_service__WEBPACK_IMPORTED_MODULE_1__["DreamService"]])
+    ], DreamsResolver);
+    return DreamsResolver;
 }());
 
 
@@ -810,7 +958,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-5\">\n    <app-dream-list></app-dream-list>\n  </div>\n  <div class=\"col-md-7\">\n    <app-dream-detail\n      *ngIf=\"selectedDream; else infoText\"\n      [dream]=\"selectedDream\"></app-dream-detail>\n    <ng-template #infoText>\n      <p>Please select a Dream!</p>\n    </ng-template>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-5\">\n    <app-dream-list></app-dream-list>\n  </div>\n  <div class=\"col-md-7\">\n    <app-dream-detail\n      *ngIf=\"selectedDream; else infoText\"\n      [dream]=\"selectedDream\"></app-dream-detail>\n    <ng-template #infoText>\n      <div style=\"padding-top: 55px\">\n        <h3>Please select a Dream!</h3>\n      </div>\n    </ng-template>\n    <app-dream-edit *ngIf=\"editPossible\"></app-dream-edit>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -826,6 +974,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DreamsComponent", function() { return DreamsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _dream_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dream.service */ "./src/app/dreams/dream.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -837,14 +986,24 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var DreamsComponent = /** @class */ (function () {
-    function DreamsComponent(dreamService) {
+    function DreamsComponent(dreamService, route) {
         this.dreamService = dreamService;
+        this.route = route;
+        this.editMode = false;
     }
     DreamsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.dreamService.dreamSelected.subscribe(function (dream) {
-            _this.selectedDream = dream;
+        this.route.data
+            .subscribe(function (data) {
+            _this.selectedDream = data['dream'];
+        });
+        this.route.params
+            .subscribe(function (params) {
+            console.log(params);
+            _this.editMode = params['dreamId'] != null;
+            console.log(_this.editMode);
         });
     };
     DreamsComponent = __decorate([
@@ -853,7 +1012,8 @@ var DreamsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dreams.component.html */ "./src/app/dreams/dreams.component.html"),
             styles: [__webpack_require__(/*! ./dreams.component.css */ "./src/app/dreams/dreams.component.css")]
         }),
-        __metadata("design:paramtypes", [_dream_service__WEBPACK_IMPORTED_MODULE_1__["DreamService"]])
+        __metadata("design:paramtypes", [_dream_service__WEBPACK_IMPORTED_MODULE_1__["DreamService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], DreamsComponent);
     return DreamsComponent;
 }());
@@ -880,7 +1040,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a href=\"#\" class=\"navbar-brand\">My Dream Boards</a>\n    </div>\n\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li\n          routerLinkActive=\"active\"\n          [routerLinkActiveOptions]=\"{exact: true}\">\n          <a routerLink=\"/\">Home</a>\n        </li>\n        <li routerLinkActive=\"active\">\n          <a routerLink=\"/boards\">Boards</a>\n        </li>\n        <!--<li routerLinkActive=\"active\">-->\n          <!--<a routerLink=\"/boards/1/dreams\">Dreams</a>-->\n        <!--</li>-->\n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li\n          class=\"dropdown\"\n          appDropdown>\n          <a href=\"#\" class=\"dropdown-toggle\" role=\"button\">Manage <span class=\"caret\"></span></a>\n          <ul class=\"dropdown-menu\">\n            <li><a href=\"#\">Save Data</a></li>\n            <li><a href=\"#\">Fetch Data</a></li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a href=\"#\" class=\"navbar-brand\">My Dream Boards</a>\n    </div>\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li\n          routerLinkActive=\"active\"\n          [routerLinkActiveOptions]=\"{exact: true}\"\n          #homeMenu\n        >\n          <a routerLink=\"/\">Home</a>\n        </li>\n        <li\n          routerLinkActive=\"active\"\n          [routerLinkActiveOptions]=\"{exact: true}\"\n          #boardMenu\n        >\n          <a routerLink=\"/boards\">Boards</a>\n        </li>\n        <li *ngIf= \"dreamActive\" class=\"active\">\n          <a>Dreams</a>\n        </li>\n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li\n          class=\"dropdown\"\n          appDropdown>\n          <a style=\"cursor: pointer\" class=\"dropdown-toggle\" role=\"button\">Manage <span class=\"caret\"></span></a>\n          <ul class=\"dropdown-menu\">\n            <li><a style=\"cursor: pointer\">Save Data</a></li>\n            <li><a style=\"cursor: pointer\">Fetch Data</a></li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n\n"
 
 /***/ }),
 
@@ -907,9 +1067,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var HeaderComponent = /** @class */ (function () {
     function HeaderComponent() {
+        this.dreamActive = false;
     }
     HeaderComponent.prototype.ngOnInit = function () {
     };
+    HeaderComponent.prototype.ngDoCheck = function () {
+        if (this.homeMenu.nativeElement.className !== 'active' &&
+            this.boardMenu.nativeElement.className !== 'active') {
+            this.dreamActive = true;
+        }
+        else {
+            this.dreamActive = false;
+        }
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('homeMenu'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], HeaderComponent.prototype, "homeMenu", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('boardMenu'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], HeaderComponent.prototype, "boardMenu", void 0);
     HeaderComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-header',

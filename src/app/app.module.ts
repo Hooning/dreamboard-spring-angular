@@ -19,6 +19,7 @@ import { DreamService } from "./dreams/dream.service";
 import { DreamsResolver } from "./dreams/dreams-resolver.service";
 import { DreamResolver } from "./dreams/dream-resolver.service";
 import { HttpModule } from "@angular/http";
+import { DreamEditComponent } from "./dreams/dream-edit/dream-edit.component";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HttpModule } from "@angular/http";
     DreamListComponent,
     DreamItemComponent,
     DreamDetailComponent,
+    DreamEditComponent,
     DreamsComponent,
     DropdownDirective,
     HomeComponent

@@ -6,6 +6,7 @@ import { DreamsComponent } from "./dreams/dreams.component";
 import { HomeComponent } from "./home/home.component";
 import { DreamsResolver} from "./dreams/dreams-resolver.service";
 import { DreamResolver } from "./dreams/dream-resolver.service";
+import {DreamEditComponent} from "./dreams/dream-edit/dream-edit.component";
 
 const appRoutes: Routes = [
   // {path: '', redirectTo: 'boards', pathMatch: 'full'},
@@ -13,10 +14,19 @@ const appRoutes: Routes = [
   { path: 'boards', component: BoardListComponent },
   { path: 'boards/:boardId/dreams',
     component: DreamsComponent,
-    resolve: { dreams: DreamsResolver } },
+    // resolve: { dreams: DreamsResolver }
+    },
+  { path: 'boards/:boardId/dreams/new',
+    component: DreamsComponent },
   { path: 'boards/:boardId/dreams/:dreamId',
     component: DreamsComponent,
-    resolve: { dreams: DreamsResolver, dream: DreamResolver }}
+    resolve: {
+        // dreams: DreamsResolver,
+        dream: DreamResolver }
+        },
+
+  { path: 'boards/:boardId/dreams/:dreamId/edit',
+    component: DreamsComponent }
 ];
 
 @NgModule({

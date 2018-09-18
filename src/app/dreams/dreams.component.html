@@ -7,7 +7,10 @@
       *ngIf="selectedDream; else infoText"
       [dream]="selectedDream"></app-dream-detail>
     <ng-template #infoText>
-      <h3>Please select a Dream!</h3>
+      <div style="padding-top: 55px">
+        <h3>Please select a Dream!</h3>
+      </div>
     </ng-template>
+    <app-dream-edit *ngIf="editPossible"></app-dream-edit>
   </div>
 </div>
