@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Dream } from "./dream.model";
 import { DreamService } from "./dream.service";
-import {ActivatedRoute, Data, Params} from "@angular/router";
+import { ActivatedRoute, Data, Params } from "@angular/router";
 
 @Component({
   selector: 'app-dreams',

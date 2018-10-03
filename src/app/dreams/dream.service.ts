@@ -1,8 +1,6 @@
 import { Dream } from "./dream.model";
-import { EventEmitter } from "@angular/core";
 
 export class DreamService {
-  dreamSelected = new EventEmitter<Dream>();
   selectedDreams: Dream[];
   selectedDream: Dream;
 

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Board } from './board.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { Subscription } from "rxjs/Rx";
 
+import { Board } from './board.model';
 import { BoardService } from "../board.service";
 
 @Component({
@@ -9,9 +10,9 @@ import { BoardService } from "../board.service";
   templateUrl: './board-list.component.html',
   styleUrls: ['./board-list.component.css']
 })
-export class BoardListComponent implements OnInit {
-
+export class BoardListComponent implements OnInit, OnDestroy {
   boards: Board[] = [];
+  private subscription: Subscription;
 
   constructor(private boardService: BoardService,
               private router: Router) { }
@@ -19,11 +20,16 @@ export class BoardListComponent implements OnInit {
   ngOnInit() {
     this.boards = this.boardService.getBoards();
 
-    this.boardService.boardChanged.subscribe(
+    this.subscription = this.boardService.boardChanged
+      .subscribe(
       (boards: Board[]) => {
         this.boards = boards;
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   onBoardDelete(boardId: number) {

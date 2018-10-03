@@ -9,7 +9,7 @@ export class BoardService {
 
   private boards: Board[] = [
     new Board(1,"Hoon's Refresh board", 'Life', 'Dreams for enjoying my life'),
-    new Board(2, "Hoon's Career board", 'IT', 'Dreams for being better Programmer')
+    new Board(2, "Hoon's Career board", 'Study', 'Dreams for being better Programmer')
   ];
 
   constructor(private router: Router) {}
