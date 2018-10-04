@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (ngSubmit)="onSubmit()" #boardForm="ngForm">
+    <form (ngSubmit)="onSubmit(boardForm)" #boardForm="ngForm">
       <div class="row">
         <div class="col-sm-3">
           <button
@@ -11,8 +11,14 @@
           </button>
         </div>
       </div>
-      <div *ngIf="newInputToggle">
+      <div *ngIf="inputToggle">
         <hr>
+        <div *ngIf="editMode">
+          <h3>Editing</h3>
+        </div>
+        <div *ngIf="!editMode">
+          <h3>Adding</h3>
+        </div>
         <div class="row">
           <div class="col-sm-3 form-group">
             <label for="name">Name</label>
@@ -66,8 +72,17 @@
                 class="btn btn-primary"
                 type="submit"
                 [disabled]="!boardForm.valid"
+                *ngIf="!editMode"
                 >
                 Add
+              </button>
+              <button
+                class="btn btn-info"
+                type="submit"
+                [disabled]="!boardForm.valid"
+                *ngIf="editMode"
+              >
+                Update
               </button>
               <button
                 class="btn btn-danger"

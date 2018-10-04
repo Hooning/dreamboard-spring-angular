@@ -1,7 +1,8 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Board } from "../board.model";
 import { BoardService } from "../../board.service";
 import { NgForm } from "@angular/forms";
+import { Subscription } from "rxjs/Rx";
 
 @Component({
   selector: 'app-board-edit',
@@ -9,35 +10,60 @@ import { NgForm } from "@angular/forms";
   styleUrls: ['./board-edit.component.css']
 })
 
-export class BoardEditComponent{
+export class BoardEditComponent implements OnInit, OnDestroy{
   @ViewChild('boardForm') boardForm : NgForm;
 
-  newInputToggle = false;
+  subscription: Subscription;
+  editMode = false;
+  editedItemId: number;
+  editedItem: Board;
+
+  inputToggle = false;
   categories = ['General','Life','Item','Study','Travel'];
   defaultCategory = 'General';
 
-  board = {
-    'boardId': 0,
-    'boardName': '',
-    'boardCategory': '',
-    'boardDescription':''
-  }
+  // Need to find a better way
+  now = new Date();
+  currentDate = this.now.getFullYear() + '-' +
+                ('0' + (this.now.getMonth()+1)).slice(-2) + '-' +
+                ('0' + this.now.getDate()).slice(-2);
 
   constructor(private boardService: BoardService) {
 
   }
 
+  ngOnInit() {
+    this.subscription = this.boardService.startedEditing
+      .subscribe(
+        (boardId: number) => {
+          if ( !this.inputToggle ) {
+            this.inputToggle = true;
+          }
+
+          setTimeout(()=> {
+            this.editedItemId = boardId;
+            this.editMode = true;
+            this.editedItem = this.boardService.getBoard(boardId);
+            
+            this.boardForm.setValue({
+              name: this.editedItem.name,
+              category: this.editedItem.category,
+              description: this.editedItem.description
+            });
+            },1);
+        }
+      );
+  }
+
   onSubmit() {
-    this.board.boardId = this.boardService.getNextBoardId();
-    this.board.boardName = this.boardForm.value.name;
-    this.board.boardCategory = this.boardForm.value.category;
-    this.board.boardDescription = this.boardForm.value.description;
 
     const newBoard = new Board(
-      this.board.boardId,
-      this.board.boardName,
-      this.board.boardCategory,
-      this.board.boardDescription
+      this.boardService.getNextBoardId(),
+      this.boardForm.value.name,
+      this.boardForm.value.category,
+      this.boardForm.value.description,
+      this.currentDate,
+      this.currentDate
     );
 
     this.boardService.addBoard(newBoard);
@@ -45,7 +71,12 @@ export class BoardEditComponent{
   }
 
   onToggleInput() {
-    this.newInputToggle = !this.newInputToggle;
+    if ( !this.inputToggle ) {
+      this.inputToggle = !this.inputToggle;
+    }
+    this.editMode = false;
+
+    this.onFormReset(this.boardForm);
   }
 
   onFormReset(form: NgForm) {
@@ -55,4 +86,7 @@ export class BoardEditComponent{
 
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

@@ -9,18 +9,28 @@
           <th scope="col">Board Name</th>
           <th scope="col">Category</th>
           <th scope="col">Description</th>
+          <th scope="col">Since</th>
+          <th scope="col">Final</th>
+          <th scope="col">View</th>
           <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
         <tr style="cursor: pointer"
             *ngFor="let board of boards"
-            [routerLink]="['/boards', board.boardId, 'dreams']"
+            (click)="onEditBoard(board.boardId)"
             >
           <td scope="row">{{ board.boardId }}</td>
           <td scope="row">{{ board.name }}</td>
           <td scope="row">{{ board.category }}</td>
           <td scope="row">{{ board.description }}</td>
+          <td scope="row">{{ board.registerdate | date: 'dd/MM/yy' }}</td>
+          <td scope="row">{{ board.updatedate | date: 'dd/MM/yy'  }}</td>
+          <td scope="row>">
+            <button
+              class="btn-xs btn-success"
+              [routerLink]="['/boards', board.boardId, 'dreams']">View</button>
+          </td>
           <td scope="row>"><button class="btn-xs btn-danger" (click)="onBoardDelete(board.boardId)">Delete</button></td>
         </tr>
       </tbody>

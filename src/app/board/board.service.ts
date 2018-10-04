@@ -2,20 +2,30 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { Board } from "./board-list/board.model";
+import {Subject} from "rxjs/Rx";
 
 @Injectable()
 export class BoardService {
   boardChanged = new EventEmitter<Board[]>()
+  startedEditing = new Subject<number>();
 
   private boards: Board[] = [
-    new Board(1,"Hoon's Refresh board", 'Life', 'Dreams for enjoying my life'),
-    new Board(2, "Hoon's Career board", 'Study', 'Dreams for being better Programmer')
+    new Board(1,"Hoon's Refresh board", 'Life', 'Dreams for enjoying my life', '2018-03-01', '2018-05-12'),
+    new Board(2, "Hoon's Career board", 'Study', 'Dreams for being better Programmer', '2018-07-03', '2018-09-16')
   ];
 
   constructor(private router: Router) {}
 
   getBoards() {
     return this.boards.slice();
+  }
+
+  getBoard(boardId: number) {
+    return this.boards.find(
+      (board) => {
+        return board.boardId === boardId;
+      }
+    );
   }
 
   // get Max boardId + 1

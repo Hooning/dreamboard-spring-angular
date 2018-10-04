@@ -36,4 +36,8 @@ export class BoardListComponent implements OnInit, OnDestroy {
     console.log("onBoardDelete() : " + boardId );
   }
 
+  onEditBoard(boardId: number) {
+    this.boardService.startedEditing.next(boardId);
+  }
+
 }
