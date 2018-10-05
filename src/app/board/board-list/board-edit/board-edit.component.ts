@@ -18,6 +18,9 @@ export class BoardEditComponent implements OnInit, OnDestroy{
   editedItemId: number;
   editedItem: Board;
 
+  boardId: number;
+  registerDate: string;
+
   inputToggle = false;
   categories = ['General','Life','Item','Study','Travel'];
   defaultCategory = 'General';
@@ -44,12 +47,16 @@ export class BoardEditComponent implements OnInit, OnDestroy{
             this.editedItemId = boardId;
             this.editMode = true;
             this.editedItem = this.boardService.getBoard(boardId);
-            
+
             this.boardForm.setValue({
               name: this.editedItem.name,
               category: this.editedItem.category,
               description: this.editedItem.description
             });
+
+            this.boardId = this.editedItem.boardId;
+            this.registerDate = this.editedItem.registerdate;
+
             },1);
         }
       );
@@ -57,16 +64,33 @@ export class BoardEditComponent implements OnInit, OnDestroy{
 
   onSubmit() {
 
-    const newBoard = new Board(
-      this.boardService.getNextBoardId(),
-      this.boardForm.value.name,
-      this.boardForm.value.category,
-      this.boardForm.value.description,
-      this.currentDate,
-      this.currentDate
-    );
+    if ( this.editMode ){
+      const oldBoard = new Board(
+        this.boardId,
+        this.boardForm.value.name,
+        this.boardForm.value.category,
+        this.boardForm.value.description,
+        this.registerDate,
+        this.currentDate
+      );
 
-    this.boardService.addBoard(newBoard);
+      this.boardService.updateBoard(this.boardId, oldBoard);
+
+    } else {
+      const newBoard = new Board(
+        this.boardService.getNextBoardId(),
+        this.boardForm.value.name,
+        this.boardForm.value.category,
+        this.boardForm.value.description,
+        this.currentDate,
+        this.currentDate
+      );
+
+      this.boardService.addBoard(newBoard);
+
+      this.editMode = false;
+      this.onFormReset(this.boardForm);
+    }
 
   }
 
@@ -80,10 +104,17 @@ export class BoardEditComponent implements OnInit, OnDestroy{
   }
 
   onFormReset(form: NgForm) {
-    form.reset({
-      category : this.defaultCategory
-    });
-
+    if ( this.editMode ){
+      this.boardForm.setValue({
+        name: this.editedItem.name,
+        category: this.editedItem.category,
+        description: this.editedItem.description
+      });
+    } else {
+      form.reset({
+        category : this.defaultCategory
+      });
+    }
   }
 
   ngOnDestroy() {

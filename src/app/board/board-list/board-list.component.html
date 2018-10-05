@@ -23,7 +23,7 @@
           <td scope="row">{{ board.boardId }}</td>
           <td scope="row">{{ board.name }}</td>
           <td scope="row">{{ board.category }}</td>
-          <td scope="row">{{ board.description }}</td>
+          <td scope="row">{{ (board.description.length > 30) ? board.description.substring(0,30)+ "..." : board.description }}</td>
           <td scope="row">{{ board.registerdate | date: 'dd/MM/yy' }}</td>
           <td scope="row">{{ board.updatedate | date: 'dd/MM/yy'  }}</td>
           <td scope="row>">

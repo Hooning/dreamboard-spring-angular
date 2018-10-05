@@ -41,4 +41,20 @@ export class BoardService {
     this.boardChanged.emit(this.boards.slice());
   }
 
+  updateBoard(boardId: number, newBoard: Board) {
+    var inx = 0;
+
+    this.boards.forEach(
+      function(board, index) {
+        if ( board.boardId === boardId ) {
+          inx = index;
+        }
+    });
+
+    this.boards.splice(inx, 1, newBoard);
+
+    this.boardChanged.next(this.boards.slice());
+
+  }
+
 }
