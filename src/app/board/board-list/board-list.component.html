@@ -31,7 +31,7 @@
               class="btn-xs btn-success"
               [routerLink]="['/boards', board.boardId, 'dreams']">View</button>
           </td>
-          <td scope="row>"><button class="btn-xs btn-danger" (click)="onBoardDelete(board.boardId)">Delete</button></td>
+          <td scope="row>"><button class="btn-xs btn-danger" (click)="onBoardDelete($event, board.boardId)">Delete</button></td>
         </tr>
       </tbody>
     </table>

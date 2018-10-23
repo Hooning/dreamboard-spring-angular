@@ -58,6 +58,19 @@ export class BoardEditComponent implements OnInit, OnDestroy{
             this.registerDate = this.editedItem.registerdate;
 
             },1);
+
+
+        }
+      );
+
+    this.subscription = this.boardService.clearEditing
+      .subscribe(
+        (boardId: number) => {
+          this.boardForm.reset({
+            category : this.defaultCategory
+          });
+
+          this.editMode = false;
         }
       );
   }

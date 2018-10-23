@@ -2,12 +2,13 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { Board } from "./board-list/board.model";
-import {Subject} from "rxjs/Rx";
+import { Subject } from "rxjs/Rx";
 
 @Injectable()
 export class BoardService {
   boardChanged = new EventEmitter<Board[]>()
   startedEditing = new Subject<number>();
+  clearEditing = new Subject<number>();
 
   private boards: Board[] = [
     new Board(1,"Hoon's Refresh board", 'Life', 'Dreams for enjoying my life', '2018-03-01', '2018-05-12'),
@@ -32,8 +33,13 @@ export class BoardService {
   getNextBoardId = () => {
     const boards = this.boards.slice();
 
-    return boards
-      .reduce((max, b) => b.boardId > max ? b.boardId : max, boards[0].boardId) + 1;
+    if( this.boards.length == 0) {
+      return 1;
+    }else{
+      return boards
+        .reduce((max, b) => b.boardId > max ? b.boardId : max, boards[0].boardId) + 1;
+    }
+
   }
 
   addBoard(board: Board) {
@@ -53,6 +59,22 @@ export class BoardService {
 
     this.boards.splice(inx, 1, newBoard);
 
+    this.boardChanged.next(this.boards.slice());
+
+  }
+
+  deleteBoard(boardId: number) {
+    var inx = 0;
+
+    this.boards.forEach(
+      function ( board, index) {
+        if (board.boardId == boardId) {
+          inx = index;
+        }
+      }
+    );
+
+    this.boards.splice(inx, 1);
     this.boardChanged.next(this.boards.slice());
 
   }

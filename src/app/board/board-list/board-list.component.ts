@@ -32,8 +32,10 @@ export class BoardListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onBoardDelete(boardId: number) {
-    console.log("onBoardDelete() : " + boardId );
+  onBoardDelete(event, boardId: number) {
+    event.stopPropagation();
+    this.boardService.deleteBoard(boardId);
+    this.boardService.clearEditing.next(boardId);
   }
 
   onEditBoard(boardId: number) {
