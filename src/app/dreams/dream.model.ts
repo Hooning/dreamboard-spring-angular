@@ -4,12 +4,25 @@ export class Dream {
   public name: string;
   public description: string;
   public imagePath: string;
+  public planDate: string;
+  public currency: string;
+  public estimatedCost: number;
 
-  constructor(dreamId:number, boardId:number, name: string, desc: string, imagePath: string){
+  constructor(dreamId:number,
+              boardId:number,
+              name: string,
+              desc: string,
+              imagePath: string,
+              planDate: string,
+              currency: string,
+              estimatedCost: number){
     this.dreamId = dreamId;
     this.boardId = boardId;
     this.name = name;
     this.description = desc;
     this.imagePath = imagePath;
+    this.planDate = planDate;
+    this.currency = currency;
+    this.estimatedCost = estimatedCost;
   }
 }

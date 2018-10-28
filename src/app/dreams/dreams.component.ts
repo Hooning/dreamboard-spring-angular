@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Dream } from "./dream.model";
 import { DreamService } from "./dream.service";
 import { ActivatedRoute, Data, Params } from "@angular/router";
+import {DreamResolver} from "./dream-resolver.service";
 
 @Component({
   selector: 'app-dreams',
@@ -19,6 +20,7 @@ export class DreamsComponent implements OnInit {
     this.route.data
       .subscribe(
         (data: Data) => {
+          // app-routing.module.ts => dream: DreamResolver
           this.selectedDream = data['dream'];
         }
       );
@@ -26,9 +28,7 @@ export class DreamsComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          console.log(params);
           this.editMode = params['dreamId'] != null;
-          console.log(this.editMode);
         }
       );
 

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HeaderComponent } from './header/header.component';
 import { BoardListComponent } from './board/board-list/board-list.component';
 import { BoardEditComponent } from "./board/board-list/board-edit/board-edit.component";
@@ -38,6 +38,7 @@ import { DreamEditComponent } from "./dreams/dream-edit/dream-edit.component";
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     HttpModule

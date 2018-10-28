@@ -29,7 +29,6 @@ export class DreamListComponent implements OnInit {
         (params: Params) => {
           this.boardId = params['boardId'];
           this.dreams = this.dreamService.getDreams(+this.boardId);
-          // console.log('this.dreams: ' + this.dreams);
         }
       );
   }

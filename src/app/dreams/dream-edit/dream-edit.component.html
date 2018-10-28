@@ -1,3 +1,68 @@
-<p>
-  dream-edit works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="dreamForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="row">
+          <div class="col-xs-4">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control" >
+          </div>
+          <div class="col-xs-4">
+            <label for="description">Description</label>
+            <textarea
+              type="text"
+              id="description"
+              formControlName="description"
+              class="form-control"
+              rows="3" >
+            </textarea>
+          </div>
+          <div class="col-xs-4">
+            <label for="imagePath">Image path</label>
+            <input
+              type="text"
+              id="imagePath"
+              formControlName="imagePath"
+              class="form-control" >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">
+            <label for="planDate">Plan Date</label>
+            <input
+              type="text"
+              id="planDate"
+              formControlName="planDate"
+              class="form-control" >
+          </div>
+          <div class="col-xs-4">
+            <label for="currency">Currency</label>
+            <input
+              type="text"
+              id="currency"
+              formControlName="currency"
+              class="form-control" >
+          </div>
+          <div class="col-xs-4">
+            <label for="estimatedCost">Estimated Cost</label>
+            <input
+              type="text"
+              id="estimatedCost"
+              formControlName="estimatedCost"
+              class="form-control" >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button type="submit" class="btn btn-success">Add</button>
+            <button type="button" class="btn btn-danger">Clear</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -21,7 +21,6 @@ const appRoutes: Routes = [
   { path: 'boards/:boardId/dreams/:dreamId',
     component: DreamsComponent,
     resolve: {
-        // dreams: DreamsResolver,
         dream: DreamResolver }
         },
 
