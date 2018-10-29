@@ -42,6 +42,9 @@ export class DreamEditComponent implements OnInit {
     let planDate = '';
     let currency = '';
     let estimatedCost = 0;
+    let achieved;
+    let display;
+    let importance = 0;
 
     if ( this.editMode ) {
       const dream = this.dreamService.getDream(this.boardId, this.dreamId);
@@ -51,6 +54,10 @@ export class DreamEditComponent implements OnInit {
       planDate = dream.planDate;
       currency = dream.currency;
       estimatedCost = dream.estimatedCost;
+      achieved = dream.achieved;
+      display = dream.display;
+      importance = dream.importance;
+
     }
 
     this.dreamForm = new FormGroup({
@@ -59,7 +66,10 @@ export class DreamEditComponent implements OnInit {
       'description': new FormControl(description),
       'planDate': new FormControl(planDate),
       'currency': new FormControl(currency),
-      'estimatedCost': new FormControl(estimatedCost)
+      'estimatedCost': new FormControl(estimatedCost),
+      'achieved': new FormControl(achieved),
+      'display': new FormControl(display),
+      'importance': new FormControl(importance)
     });
   }
 

@@ -7,9 +7,14 @@
       *ngIf="selectedDream; else infoText"
       [dream]="selectedDream"></app-dream-detail>
     <ng-template #infoText>
-      <div style="padding-top: 55px">
-        <h3>Please select a Dream!</h3>
+      <div *ngIf="editMode; else infoText">
+        <h2>Edit Dream</h2>
       </div>
+      <ng-template #infoText>
+        <div style="padding-top: 55px; padding-left: 35px">
+          <h3>Please select a Dream!</h3>
+        </div>
+      </ng-template>
     </ng-template>
     <app-dream-edit *ngIf="editMode"></app-dream-edit>
   </div>

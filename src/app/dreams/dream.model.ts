@@ -7,6 +7,9 @@ export class Dream {
   public planDate: string;
   public currency: string;
   public estimatedCost: number;
+  public achieved: boolean;
+  public display: boolean;
+  public importance: number;
 
   constructor(dreamId:number,
               boardId:number,
@@ -15,7 +18,10 @@ export class Dream {
               imagePath: string,
               planDate: string,
               currency: string,
-              estimatedCost: number){
+              estimatedCost: number,
+              achieved: boolean,
+              display: boolean,
+              importance: number){
     this.dreamId = dreamId;
     this.boardId = boardId;
     this.name = name;
@@ -24,5 +30,8 @@ export class Dream {
     this.planDate = planDate;
     this.currency = currency;
     this.estimatedCost = estimatedCost;
+    this.achieved = achieved;
+    this.display = display;
+    this.importance = importance;
   }
 }

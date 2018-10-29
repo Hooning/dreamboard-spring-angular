@@ -43,11 +43,31 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    Planed date: 2020-10-10
+    Planed date: {{ dream.planDate | date: 'dd/MM/yy' }}
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    Estimated cost: € 10000
+    Remain days: {{ remainDays }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    Estimated cost: {{ dream.currency }} {{ dream.estimatedCost }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    Importance: {{ dream.importance }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    Achieved: {{ dream.achieved }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    Display: {{ dream.display }}
   </div>
 </div>

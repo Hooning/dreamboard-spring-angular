@@ -6,7 +6,7 @@ import { DreamsComponent } from "./dreams/dreams.component";
 import { HomeComponent } from "./home/home.component";
 import { DreamsResolver} from "./dreams/dreams-resolver.service";
 import { DreamResolver } from "./dreams/dream-resolver.service";
-import {DreamEditComponent} from "./dreams/dream-edit/dream-edit.component";
+import { DreamEditComponent } from "./dreams/dream-edit/dream-edit.component";
 
 const appRoutes: Routes = [
   // {path: '', redirectTo: 'boards', pathMatch: 'full'},
@@ -25,7 +25,9 @@ const appRoutes: Routes = [
         },
 
   { path: 'boards/:boardId/dreams/:dreamId/edit',
-    component: DreamsComponent }
+    component: DreamsComponent,
+    data: { editMode: true }
+  }
 ];
 
 @NgModule({

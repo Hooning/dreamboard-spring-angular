@@ -3,7 +3,7 @@
     <form [formGroup]="dreamForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="row">
-          <div class="col-xs-4">
+          <div class="col-xs-6">
             <label for="name">Name</label>
             <input
               type="text"
@@ -11,17 +11,38 @@
               formControlName="name"
               class="form-control" >
           </div>
-          <div class="col-xs-4">
+          <div class="col-xs-6">
+            <label for="planDate">Plan Date</label>
+            <input
+              type="text"
+              id="planDate"
+              formControlName="planDate"
+              class="form-control"
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
             <label for="description">Description</label>
             <textarea
               type="text"
               id="description"
               formControlName="description"
               class="form-control"
-              rows="3" >
+              rows="2" >
             </textarea>
           </div>
-          <div class="col-xs-4">
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <label for="importance">Importance</label>
+            <input
+              type="text"
+              id="importance"
+              formControlName="importance"
+              class="form-control" >
+          </div>
+          <div class="col-xs-6">
             <label for="imagePath">Image path</label>
             <input
               type="text"
@@ -31,15 +52,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-4">
-            <label for="planDate">Plan Date</label>
-            <input
-              type="text"
-              id="planDate"
-              formControlName="planDate"
-              class="form-control" >
-          </div>
-          <div class="col-xs-4">
+          <div class="col-xs-6">
             <label for="currency">Currency</label>
             <input
               type="text"
@@ -47,7 +60,7 @@
               formControlName="currency"
               class="form-control" >
           </div>
-          <div class="col-xs-4">
+          <div class="col-xs-6">
             <label for="estimatedCost">Estimated Cost</label>
             <input
               type="text"
@@ -57,7 +70,26 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-xs-6">
+            <label for="achieved">Achieved</label>
+            <input
+              type="text"
+              id="achieved"
+              formControlName="achieved"
+              class="form-control" >
+          </div>
+          <div class="col-xs-6">
+            <label for="display">Display</label>
+            <input
+              type="text"
+              id="display"
+              formControlName="display"
+              class="form-control" >
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-12 btn-toolbar">
             <button type="submit" class="btn btn-success">Add</button>
             <button type="button" class="btn btn-danger">Clear</button>
           </div>
