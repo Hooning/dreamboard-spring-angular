@@ -4,7 +4,7 @@
       [src]="dream.imagePath"
       alt="{{ dream.name }}"
       class="img-responsive"
-      style="max-height: 200px">
+      style="max-height: 200px; padding-top: 53px">
   </div>
 </div>
 <div class="row">
@@ -36,38 +36,49 @@
     </div>
   </div>
 </div>
+<br/>
 <div class="row">
-  <div class="col-xs-12">
-    {{ dream.description }}
+  <label class="col-xs-3">Description</label>
+  <div class="col-xs-9">{{ dream.description }}</div>
+</div>
+<div class="row">
+  <label class="col-xs-3">Planed date</label>
+  <div class="col-xs-9">
+    {{ dream.planDate | date: 'dd/MM/yy' }}
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    Planed date: {{ dream.planDate | date: 'dd/MM/yy' }}
+  <label class="col-xs-3">D-day</label>
+  <div class="col-xs-9">
+    {{ remainDays }}&nbsp;days
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    Remain days: {{ remainDays }}
+  <label class="col-xs-3">Estimated cost</label>
+  <div class="col-xs-9">
+    {{ dream.currency }} {{ dream.estimatedCost }}
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    Estimated cost: {{ dream.currency }} {{ dream.estimatedCost }}
+  <label class="col-xs-3" style="height: 40px; padding-top: 10px;">Importance</label>
+  <div class="col-xs-9">
+    <button mat-icon-button [color]="color" *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i" style="color: gold">
+      <mat-icon>
+        {{showIcon(i)}}
+      </mat-icon>
+    </button>
+    <mat-error *ngIf="starCount == null || starCount == 0">
+      Star count is <strong>required</strong> and cannot be zero
+    </mat-error>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    Importance: {{ dream.importance }}
+  <label class="col-xs-3">Achieved</label>
+  <div class="col-xs-9">
+    {{ dream.achieved }}
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    Achieved: {{ dream.achieved }}
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    Display: {{ dream.display }}
-  </div>
+  <label class="col-xs-3">Display</label>
+  <div class="col-xs-9">{{ dream.display }}</div>
 </div>

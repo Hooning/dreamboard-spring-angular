@@ -12,6 +12,7 @@ import { DreamResolver } from "./dream-resolver.service";
 export class DreamsComponent implements OnInit {
   selectedDream: Dream;
   editMode: boolean = false;
+  newMode: boolean = false;
 
   constructor(private dreamService: DreamService,
               private route: ActivatedRoute) { }
@@ -28,6 +29,12 @@ export class DreamsComponent implements OnInit {
             console.log(this.selectedDream);
           }else{
             this.editMode = false;
+          }
+
+          if( data['newMode'] ){
+            this.newMode = true;
+          }else{
+            this.newMode = false;
           }
         }
       );

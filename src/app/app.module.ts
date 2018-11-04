@@ -20,6 +20,8 @@ import { DreamsResolver } from "./dreams/dreams-resolver.service";
 import { DreamResolver } from "./dreams/dream-resolver.service";
 import { HttpModule } from "@angular/http";
 import { DreamEditComponent } from "./dreams/dream-edit/dream-edit.component";
+import { RatingComponent } from './ui/rating/rating.component';
+import { CustomMaterialModule } from "./custom-material/custom-material.module";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { DreamEditComponent } from "./dreams/dream-edit/dream-edit.component";
     DreamEditComponent,
     DreamsComponent,
     DropdownDirective,
-    HomeComponent
+    HomeComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { DreamEditComponent } from "./dreams/dream-edit/dream-edit.component";
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    CustomMaterialModule
   ],
   providers: [BoardService, DreamService, DreamsResolver, DreamResolver],
   bootstrap: [AppComponent]

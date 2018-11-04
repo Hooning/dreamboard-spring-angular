@@ -17,7 +17,9 @@ const appRoutes: Routes = [
     // resolve: { dreams: DreamsResolver }
     },
   { path: 'boards/:boardId/dreams/new',
-    component: DreamsComponent },
+    component: DreamsComponent,
+    data: { newMode: true }
+  },
   { path: 'boards/:boardId/dreams/:dreamId',
     component: DreamsComponent,
     resolve: {

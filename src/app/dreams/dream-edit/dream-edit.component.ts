@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormControl, FormGroup, Validators }  from "@angular/forms";
 import { DreamService } from "../dream.service";
 
 @Component({
@@ -61,15 +61,18 @@ export class DreamEditComponent implements OnInit {
     }
 
     this.dreamForm = new FormGroup({
-      'name': new FormControl(dreamName),
+      'name': new FormControl(dreamName, Validators.required),
       'imagePath': new FormControl(imagePath),
       'description': new FormControl(description),
-      'planDate': new FormControl(planDate),
-      'currency': new FormControl(currency),
-      'estimatedCost': new FormControl(estimatedCost),
-      'achieved': new FormControl(achieved),
-      'display': new FormControl(display),
-      'importance': new FormControl(importance)
+      'planDate': new FormControl(planDate, Validators.required),
+      'currency': new FormControl(currency, Validators.required),
+      'estimatedCost': new FormControl(estimatedCost, [
+        Validators.required,
+        Validators.pattern(/^[1-9]+[0-9]*$/)
+      ]),
+      'achieved': new FormControl(achieved, Validators.required),
+      'display': new FormControl(display, Validators.required),
+      'importance': new FormControl(importance, Validators.required)
     });
   }
 
