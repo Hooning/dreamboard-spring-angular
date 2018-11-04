@@ -31,6 +31,13 @@ export class DreamListComponent implements OnInit {
           this.dreams = this.dreamService.getDreams(+this.boardId);
         }
       );
+
+    this.dreamService.dreamsChanged
+      .subscribe(
+        (dreams: Dream[]) => {
+          this.dreams = dreams;
+        }
+      );
   }
 
   // <!--[routerLink] = "['/boards', dreams[0].boardId, 'dreams', 'new']"-->

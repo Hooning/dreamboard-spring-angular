@@ -1,8 +1,10 @@
 import { Dream } from "./dream.model";
+import { Subject } from "rxjs/Rx";
 
 export class DreamService {
   selectedDreams: Dream[];
   selectedDream: Dream;
+  dreamsChanged = new Subject<Dream[]>();
 
   private dreams: Dream[] = [
     //Dummy data
@@ -56,5 +58,43 @@ export class DreamService {
     remainDays = Math.floor( remainDays / (24*60*60*1000));
 
     return remainDays;
+  }
+
+  // get Max dreamId + 1
+  getNextDreamId = (boardId: number) => {
+    const dreams = this.getDreams(boardId).slice();
+
+    if( this.dreams.length == 0) {
+      return 1;
+    }else{
+      return dreams
+        .reduce((max, b) => b.dreamId > max ? b.dreamId : max, dreams[0].dreamId) + 1;
+    }
+  }
+
+  addDream(boardId: number, dream: Dream) {
+    this.dreams.push(dream);
+
+    this.dreamsChanged.next(
+      this.getDreams(boardId)
+    );
+  }
+
+  updateDream(boardId: number, dreamId: number, updatedDream: Dream) {
+    var inx = 0;
+
+    this.dreams.forEach(
+      function(dream, index) {
+        if ( dream.boardId === boardId && dream.dreamId === dreamId ) {
+          inx = index;
+        }
+      });
+
+    this.dreams.splice(inx, 1, updatedDream);
+
+    this.dreamsChanged.next(
+      this.getDreams(boardId)
+    );
+
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { FormControl, FormGroup, Validators }  from "@angular/forms";
 import { DreamService } from "../dream.service";
+import {Dream} from "../dream.model";
 
 @Component({
   selector: 'app-dream-edit',
@@ -32,7 +33,26 @@ export class DreamEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.dreamForm);
+    const newDream = new Dream(
+        this.dreamId,
+        this.boardId,
+        this.dreamForm.value['name'],
+        this.dreamForm.value['description'],
+        this.dreamForm.value['imagePath'],
+        this.dreamForm.value['planDate'],
+        this.dreamForm.value['currency'],
+        this.dreamForm.value['estimatedCost'],
+        this.dreamForm.value['achieved'],
+        this.dreamForm.value['display'],
+        this.dreamForm.value['importance']
+      );
+
+    if (this.editMode) {
+      this.dreamService.updateDream(this.boardId, this.dreamId, newDream);
+    }else{
+      newDream.dreamId = this.dreamService.getNextDreamId(this.boardId);
+      this.dreamService.addDream(this.boardId, newDream);
+    }
   }
 
   private initForm() {

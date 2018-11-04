@@ -30,9 +30,6 @@ export class DreamDetailComponent implements OnInit, OnDestroy {
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-
-    console.log(this.dream);
-
     this.paramsSubscription = this.route.params
       .subscribe(
         (params: Params) => {

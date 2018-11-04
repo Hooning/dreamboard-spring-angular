@@ -26,7 +26,6 @@ export class DreamsComponent implements OnInit {
 
           if( data['editMode'] ){
             this.editMode = true;
-            console.log(this.selectedDream);
           }else{
             this.editMode = false;
           }
