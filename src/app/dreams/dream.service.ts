@@ -64,7 +64,7 @@ export class DreamService {
   getNextDreamId = (boardId: number) => {
     const dreams = this.getDreams(boardId).slice();
 
-    if( this.dreams.length == 0) {
+    if( dreams.length == 0) {
       return 1;
     }else{
       return dreams
@@ -96,5 +96,21 @@ export class DreamService {
       this.getDreams(boardId)
     );
 
+  }
+
+  deleteDream(boardId: number, dreamId: number) {
+    var inx = 0;
+
+    this.dreams.forEach(
+      function(dream, index) {
+        if ( dream.boardId === boardId && dream.dreamId === dreamId ) {
+          inx = index;
+        }
+      });
+
+    this.dreams.splice(inx, 1);
+    this.selectedDream = null;
+
+    this.dreamsChanged.next(this.getDreams(boardId).slice());
   }
 }

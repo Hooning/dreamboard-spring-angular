@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { FormControl, FormGroup, Validators }  from "@angular/forms";
 import { DreamService } from "../dream.service";
-import {Dream} from "../dream.model";
+import { Dream } from "../dream.model";
 
 @Component({
   selector: 'app-dream-edit',
@@ -16,7 +16,8 @@ export class DreamEditComponent implements OnInit {
   dreamForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
-              private dreamService: DreamService) {
+              private dreamService: DreamService,
+              private router: Router ) {
 
   }
 
@@ -53,6 +54,12 @@ export class DreamEditComponent implements OnInit {
       newDream.dreamId = this.dreamService.getNextDreamId(this.boardId);
       this.dreamService.addDream(this.boardId, newDream);
     }
+
+    this.onCancel();
+  }
+
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   private initForm() {

@@ -67,4 +67,9 @@ export class DreamDetailComponent implements OnInit, OnDestroy {
     ])
   }
 
+  onDeleteDream() {
+    this.dreamService.deleteDream(this.dream.boardId, this.dream.dreamId);
+    this.router.navigate(['/boards', this.dream.boardId, 'dreams'])
+  }
+
 }

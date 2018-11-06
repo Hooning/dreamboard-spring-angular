@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Dream } from "./dream.model";
-import { DreamService } from "./dream.service";
 import { ActivatedRoute, Data, Params } from "@angular/router";
 import { DreamResolver } from "./dream-resolver.service";
 
@@ -14,8 +13,7 @@ export class DreamsComponent implements OnInit {
   editMode: boolean = false;
   newMode: boolean = false;
 
-  constructor(private dreamService: DreamService,
-              private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data

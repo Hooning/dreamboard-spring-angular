@@ -3,8 +3,8 @@
     <img
       [src]="dream.imagePath"
       alt="{{ dream.name }}"
-      class="img-responsive"
-      style="max-height: 200px; padding-top: 53px">
+      class="img-responsive img-rounded"
+      style="max-height: 300px; padding-top: 53px">
   </div>
 </div>
 <div class="row">
@@ -31,7 +31,11 @@
             Edit Dream
           </a>
         </li>
-        <li><a style="cursor: pointer">Delete Dream</a></li>
+        <li>
+          <a style="cursor: pointer"
+             (click)="onDeleteDream()"
+          >Delete Dream</a>
+        </li>
       </ul>
     </div>
   </div>
