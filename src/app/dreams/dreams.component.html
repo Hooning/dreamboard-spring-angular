@@ -11,6 +11,6 @@
         <h3>Please select a Dream!</h3>
       </div>
     </ng-template>
-    <app-dream-edit *ngIf="editMode || newMode"></app-dream-edit>
+    <app-dream-edit *ngIf="editMode || newMode" (ratingUpdated) = "onRateChange($event)"></app-dream-edit>
   </div>
 </div>

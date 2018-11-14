@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { FormControl, FormGroup, Validators }  from "@angular/forms";
 import { DreamService } from "../dream.service";
 import { Dream } from "../dream.model";
+import { Subscription } from "rxjs/Rx";
+import { MatSnackBar } from "@angular/material";
 
 @Component({
   selector: 'app-dream-edit',
@@ -14,10 +16,20 @@ export class DreamEditComponent implements OnInit {
   dreamId: number;
   editMode: boolean;
   dreamForm: FormGroup;
+  paramsSubscription: Subscription;
+
+  @Input('rating') public rating: number;
+  @Input('starCount') public starCount: number;
+  @Input('color') color: string = StarRatingColor.primary;
+  @Output() ratingUpdated = new EventEmitter<number>();
+
+  private snackBarDuration: number = 1000;
+  ratingArr = [];
 
   constructor(private route: ActivatedRoute,
               private dreamService: DreamService,
-              private router: Router ) {
+              private router: Router,
+              private snackBar: MatSnackBar) {
 
   }
 
@@ -29,6 +41,21 @@ export class DreamEditComponent implements OnInit {
           this.dreamId = +params['dreamId'];
           this.editMode = params['dreamId'] != null;
           this.initForm();
+        }
+      );
+
+    this.paramsSubscription = this.route.params
+      .subscribe(
+        (params: Params) => {
+          setTimeout(()=> {
+            this.ratingArr = [];
+            this.starCount = 5;
+
+            for (let index = 0; index < this.starCount; index++) {
+              this.ratingArr.push(index);
+            }
+
+          }, 0);
         }
       );
   }
@@ -45,7 +72,7 @@ export class DreamEditComponent implements OnInit {
         this.dreamForm.value['estimatedCost'],
         this.dreamForm.value['achieved'],
         this.dreamForm.value['display'],
-        this.dreamForm.value['importance']
+        this.dreamForm.value['importance'] = this.rating
       );
 
     if (this.editMode) {
@@ -72,6 +99,7 @@ export class DreamEditComponent implements OnInit {
     let achieved;
     let display;
     let importance = 0;
+    this.rating = 0;
 
     if ( this.editMode ) {
       const dream = this.dreamService.getDream(this.boardId, this.dreamId);
@@ -84,6 +112,7 @@ export class DreamEditComponent implements OnInit {
       achieved = dream.achieved;
       display = dream.display;
       importance = dream.importance;
+      this.rating = dream.importance;
 
     }
 
@@ -103,4 +132,26 @@ export class DreamEditComponent implements OnInit {
     });
   }
 
+  showIcon(index: number) {
+    if (this.rating >= index + 1) {
+      return 'star';
+    } else {
+      return 'star_border';
+    }
+  }
+
+  onClick( rating: number ) {
+    this.rating = rating;
+    this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
+      duration: this.snackBarDuration
+    });
+    this.ratingUpdated.emit(this.rating);
+    return false;
+  }
+}
+
+export enum StarRatingColor {
+  primary = "primary",
+  accent = "accent",
+  warn = "warn"
 }

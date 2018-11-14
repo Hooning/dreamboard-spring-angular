@@ -12,6 +12,7 @@ export class DreamsComponent implements OnInit {
   selectedDream: Dream;
   editMode: boolean = false;
   newMode: boolean = false;
+  rating: number;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -43,6 +44,11 @@ export class DreamsComponent implements OnInit {
         }
       );
 
+  }
+
+  onRateChange(rating: number) {
+    // console.log(rating);
+    this.rating = rating;
   }
 
 }

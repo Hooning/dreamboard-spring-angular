@@ -41,11 +41,26 @@
       <div class="row">
         <div class="col-xs-6">
           <label for="importance">Importance</label>
-          <input
-            type="text"
+          <!--<input-->
+            <!--type="hidden"-->
+            <!--id="importance"-->
+            <!--formControlName="importance"-->
+            <!--class="form-control">-->
+          <br/>
+          <button
             id="importance"
-            formControlName="importance"
-            class="form-control" >
+            mat-icon-button
+            [color]="color"
+            *ngFor="let ratingId of ratingArr;index as i"
+            (click)="onClick(i+1)"
+            [id]="'star_'+i" >
+            <mat-icon>
+              {{showIcon(i)}}
+            </mat-icon>
+          </button>
+          <mat-error *ngIf="starCount == null || starCount == 0">
+            Star count is <strong>required</strong> and cannot be zero
+          </mat-error>
         </div>
         <div class="col-xs-6">
           <label for="imagePath">Image path</label>

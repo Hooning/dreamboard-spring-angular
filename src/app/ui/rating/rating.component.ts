@@ -26,7 +26,8 @@ export class RatingComponent implements OnInit {
       this.ratingArr.push(index);
     }
   }
-  onClick(rating:number) {
+
+  onClick( rating:number ) {
     console.log(rating)
     this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
       duration: this.snackBarDuration
