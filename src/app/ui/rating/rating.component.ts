@@ -37,6 +37,7 @@ export class RatingComponent implements OnInit {
   }
 
   showIcon(index:number) {
+
     if (this.rating >= index + 1) {
       return 'star';
     } else {
