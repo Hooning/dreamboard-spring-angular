@@ -7,7 +7,7 @@
 ## Environment
 
 - Mac OS
-- IntelliJ IDEA
+- IntelliJ IDEA 
 
 ## Technology used
 - Java 8
